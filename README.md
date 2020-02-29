@@ -10,7 +10,10 @@ Site d'achat et vente en ligne basé sur ricardo.ch
 3. Ouvrir localhost:8000
 
 ## Migrations
-Commande : `python manage.py migrate`
+Modifications d'un model:
+* Modif dans 'models.py'
+* Commande `python manage.py makemigrations` permet de créer le migrations correspondant aux changements
+* Commande `python manage.py migrate` applique les migrations
 
 ## Tuto entier
 [Tuto Django - ResistanceApp](https://github.com/HE-Arc/demo-django-resistance-app)
