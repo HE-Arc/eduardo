@@ -1,0 +1,11 @@
+<h1>eduardo.ch</h1>
+
+{% if article_list %} 
+    <ul>
+        {% for article in article_list %}
+            <li><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No articles...</p>
+{% endif %}

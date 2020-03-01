@@ -9,7 +9,7 @@ class User(models.Model):
 
     def __str__(self):
         return self.user_name
-        
+
 
 class Article(models.Model):
     article_name = models.CharField(max_length=200)
@@ -17,7 +17,7 @@ class Article(models.Model):
     quantity = models.IntegerField(default=1)
     state = models.CharField(max_length=50)
     color = models.CharField(max_length=100)
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    # seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.article_name
