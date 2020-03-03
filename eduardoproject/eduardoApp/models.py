@@ -1,15 +1,14 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.Model):
-    user_name = models.CharField(max_length=200)
-    user_email = models.EmailField(max_length=200)
-    user_password = models.CharField(max_length=200)
+class Category(models.Model):
+    category_name = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.user_name
-
+        return self.category_name
 
 class Article(models.Model):
     article_name = models.CharField(max_length=200)
@@ -17,8 +16,16 @@ class Article(models.Model):
     quantity = models.IntegerField(default=1)
     state = models.CharField(max_length=50)
     color = models.CharField(max_length=100)
-    # seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    seller = models.ForeignKey(
+        User,
+        null = True,
+        on_delete = models.CASCADE,
+    )
+    category = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.article_name
 
+
+
+    
