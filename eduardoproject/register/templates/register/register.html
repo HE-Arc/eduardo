@@ -1,11 +1,30 @@
-<h1 class="mt-2">Create account</h1>
+{% load static %}
+<link rel ="stylesheet" type="text/css" href="{% static 'register/style.css' %}">
+<h1 class="h1_text">Create account</h1>
 <hr class="mt-0 mb-4">
 {% load crispy_forms_tags %}
 
 {% block content %}
-<form method="POST" class="form-group">
+<div class="register">
+    <div class="form">
+
+<form method="POST" class="register-form">
     {% csrf_token %}
-    {{form|crispy}}
-    <button type="submit" class="btn btn-success">Register</button>
+
+    
+    <div id="div_id_username" class="form-group"><label for="id_username" class=" requiredField">
+        Username<span class="asteriskField">*</span></label>{{form.username}}
+    <small id="hint_id_username" class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small> </div>
+    <div id="div_id_email" class="form-group"> <label for="id_email" class=" requiredField">
+        Email<span class="asteriskField">*</span> </label> {{form.email}}</div>
+    <div id="div_id_password1" class="form-group"> <label for="id_password1" class=" requiredField">
+        Password<span class="asteriskField">*</span></label> {{form.password1}} 
+    <small id="hint_id_password1" class="form-text text-muted"><ul><li>Your password can’t be too similar to your other personal information, or a commonly used.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be entirely numeric.</li></ul></small> </div> 
+    <div id="div_id_password2" class="form-group"> <label for="id_password2" class=" requiredField"></label>
+        Password confirmation<span class="asteriskField">*</span> </label>{{form.password2}}</div>
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
+</div>
+</div>
+
 {% endblock %}
