@@ -5,7 +5,7 @@ body{
     background-color: cyan;
 }
 
-.register {
+.register .login {
   width: 22.5em;
   padding: 8% 0 0;
   margin: auto;
@@ -19,7 +19,7 @@ body{
   background: #FFFFFF;
   max-width: 22.5em;
   margin: 0 auto  6.25em;
-  margin-top: -3.5em;
+  margin-top: 3.5em;
   padding: 2.8125em;
   text-align: center;
   box-shadow: 0 0 1.25em
