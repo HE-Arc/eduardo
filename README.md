@@ -4,6 +4,13 @@
 
 Site d'achat et vente en ligne basé sur ricardo.ch
 
+## Environnement de développement
+Installer l'environnement : 
+1. Commande `pip install virtualenv`
+2. Créer un environnement avec `virtualenv <nom_env>`
+3. Démarrer l'environnement avec `<nom_env>\Scripts\activate.bat`
+4. Il devrait être écrit (<nom_env>) sur la console
+
 ## Démarrage serveur
 1. Ouvrir la console dans le dossier de `manage.py`
 2. Lancer `python manage.py runserver`
