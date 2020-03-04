@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
+    'django.forms',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +85,6 @@ DATABASES = {
     }
 }
 
-# Auth User
-#AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -127,6 +126,6 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
 
-LOGIN_REDIRECT_URL="/"
+LOGIN_REDIRECT_URL="/eduardo"
 
 LOGOUT_REDIRECT_URL="/"
