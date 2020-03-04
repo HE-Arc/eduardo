@@ -8,11 +8,9 @@
     <div class="form">
     <form method="post" class="login-form">
         {% csrf_token %}
-        <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
-            Username<span class="asteriskField">*</span> </label> <div class=""> <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="textinput textInput form-control" required id="id_username"> </div> </div> <div id="div_id_password" class="form-group"> <label for="id_password" class=" requiredField">
-            Password<span class="asteriskField">*</span> </label> <div class=""> <input type="password" name="password" autocomplete="current-password" class="textinput textInput form-control" required id="id_password"> </div> </div>
-
+{{form|crispy}}
     <button type="submit" class="btn btn-success">Login</button>
+
     <p>Don't have an account? Create one <a href="/register">here</a></p>   </form>
 </div>
 
