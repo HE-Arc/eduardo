@@ -84,7 +84,11 @@ target/
 *.pyc
 __pycache__/
 local_settings.py
-venv/
+
+# Virtualenv related
+bin/
+include/
+pip-selfcheck.json
 
 .env
 db.sqlite3
