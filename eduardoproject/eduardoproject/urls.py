@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('main.urls')), 
     path('eduardo/', include('eduardoApp.urls')),
     path('admin/', admin.site.urls),
-    path("register/",v.register,name="register"),
+    path('eduardo/register/',v.register,name='register'),
     path('', include("django.contrib.auth.urls")),
 ]
