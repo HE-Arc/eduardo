@@ -4,7 +4,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'static/eduardoApp/style.css' %}">
 
 <h1>{{ article.article_name }}</h1>
-<img src="media/{{ article.image }}">
+
+<img src="{{ article.article_image.url }}">
+
 <ul>
     <li>Prix : {{ article.price }}</li>
     <li>Quantité : {{ article.quantity }}</li>
