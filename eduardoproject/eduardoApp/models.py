@@ -11,7 +11,7 @@ class User(models.Model):
     def __str__(self):
         return self.user_name
 
-# ---------------- Articles ---------------
+# -------------- Articles ---------------
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
