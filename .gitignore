@@ -92,3 +92,4 @@ pip-selfcheck.json
 
 .env
 db.sqlite3
+venv/

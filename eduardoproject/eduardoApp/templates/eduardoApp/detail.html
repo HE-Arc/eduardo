@@ -1,11 +1,18 @@
 {% load static %}
 
+
 <link rel="stylesheet" type="text/css" href="{% static 'eduardoApp/style.css' %}">
 
 <h1>{{ article.article_name }}</h1>
+<img src="media/{{ article.image }}">
 <ul>
     <li>Prix : {{ article.price }}</li>
     <li>Quantité : {{ article.quantity }}</li>
     <li>Etat : {{ article.state }}</li>
     <li>Couleur : {{ article.color }}</li>
+    <li>Catégorie : {{ article.category }}</li>
 </ul>
+<textarea rows="4" cols="50" style="resize: none;">{{ article.detail_text }}</textarea>
+<div>
+    <a href="#">Ajouter au panier</a>
+</div>
