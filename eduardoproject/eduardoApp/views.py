@@ -32,3 +32,8 @@ def register(response):
 
     return render(response, "register/register.html", {"form":form})
 
+def logout(response):
+    auth.logout(respnse)
+    messages.info(response, "Logged out successfully!")
+    return redirect("/eduardo")
+
