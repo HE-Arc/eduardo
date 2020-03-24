@@ -21,3 +21,19 @@ body {
   #login .container #login-row #login-column #login-box #login-form #register-link {
     margin-top: -85px;
   }
+  
+.container_vertical
+{
+  display: flex;
+  flex-direction: column;
+  background-color: greenyellow;
+}
+
+.container_horizental
+{
+  display: inline-flex;
+  padding-top: 5px;
+  justify-content: space-between;
+  margin:auto;
+  background-color: red;
+}

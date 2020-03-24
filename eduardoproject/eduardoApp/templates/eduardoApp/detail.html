@@ -3,17 +3,29 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'eduardoApp/style.css' %}">
 
-<h1>{{ article.article_name }}</h1>
 
-<img src="{{ article.article_image.url }}">
+<div class="container_horizental">
+    <img src="{{ article.article_image.url }}" width="400" height="400">
+    <div class="container_vertical">
+        <h1>{{ article.article_name }}</h1>
+        <h2>Détails</h2>
+        <ul>
+            <li>Prix : {{ article.price }}</li>
+            <li>Quantité : {{ article.quantity }}</li>
+            <li>Etat : {{ article.state }}</li>
+            <li>Couleur : {{ article.color }}</li>
+            <li>Catégorie : {{ article.category }}</li>
+        </ul>
+        <h2>Description:</h2>
+        <p>{{article.detail_text}}</p>
 
-<ul>
-    <li>Prix : {{ article.price }}</li>
-    <li>Quantité : {{ article.quantity }}</li>
-    <li>Etat : {{ article.state }}</li>
-    <li>Couleur : {{ article.color }}</li>
-    <li>Catégorie : {{ article.category }}</li>
-</ul>
+        <a href="#">Ajouter au panier</a>
+
+    </div>
+
+
+</div>
+
 <textarea rows="4" cols="50" style="resize: none;">{{ article.detail_text }}</textarea>
 <div>
     <a href="#">Ajouter au panier</a>
