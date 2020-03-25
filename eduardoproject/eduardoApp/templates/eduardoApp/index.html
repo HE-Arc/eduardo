@@ -5,12 +5,21 @@
 {% block content%}
 
 
+<h2>List of categories</h2>
+    {% if category_list %}
+        {% for category in category_list %}
+            <p>{{ category.name }}</p>
+        {% endfor %}
+    {% else %}
+    <p>no categorys</p>
+    {% endif %}
+
+<h2>List of articles</h2>
     {% if article_list %} 
         <div class="flex-container">
             {% for article in article_list %}
                 <div><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></div>
             {% endfor %}
-        
         </div>
     {% else %}
         <p>No articles...</p>
