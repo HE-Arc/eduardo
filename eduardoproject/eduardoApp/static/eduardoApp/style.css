@@ -26,7 +26,7 @@ body {
   position: absolute;
   right: 0.625em;
   top: 0.3em;  }
-
+/*
 @media screen and (max-width: 50em) {
   body {
     background-color: olive;
@@ -37,7 +37,7 @@ body {
     margin-top: -85px;
   }
   
-}
+}*/
 
 .container_vertical
 {
