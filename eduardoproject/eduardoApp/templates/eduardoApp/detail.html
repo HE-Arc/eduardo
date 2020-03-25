@@ -1,9 +1,10 @@
 {% extends 'partials/header_footer.html' %}
 
 {% load static %}
-
-
 <link rel="stylesheet" type="text/css" href="{% static 'static/eduardoApp/style.css' %}">
+
+{% block content%}
+
 
 <h1>{{ article.article_name }}</h1>
 
@@ -20,3 +21,4 @@
 <div>
     <a href="#">Ajouter au panier</a>
 </div>
+{% endblock %}
