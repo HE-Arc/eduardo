@@ -34,9 +34,28 @@ body {
   }
 }
 
+li{
+  background-color: white;
+}
+
 footer{
   background-color: darkslategray;
   color: white;
 }
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 9.375em;
+  margin: 0.06666666666666667em;
+  text-align: center;
+  line-height: 3.125em;
+  font-size: 1.875em;
+}
+
   
 

@@ -3,16 +3,15 @@
 {% load static %}
 
 {% block content%}
-<h1 class="display-4">Liste des catégories</h1>
 
 
     {% if article_list %} 
-        <ul>
+        <div class="flex-container">
             {% for article in article_list %}
-            <p>    {{article.category}}            </p>
-                <li><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></li>
+                <div><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></div>
             {% endfor %}
-        </ul>
+        
+        </div>
     {% else %}
         <p>No articles...</p>
     {% endif %}
