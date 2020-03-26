@@ -5,16 +5,19 @@
 {% block content%}
 
 
-<h2>List of categories</h2>
+<h2>Liste des catégories</h2>
     {% if category_list %}
+    <div class="flex-container">
+
         {% for category in category_list %}
-            <p>{{ category.name }}</p>
+            <div>{{ category.name }}</div>
         {% endfor %}
+    </div>
     {% else %}
     <p>no categorys</p>
     {% endif %}
 
-<h2>List of articles</h2>
+<h2>Liste des articles</h2>
     {% if article_list %} 
         <div class="flex-container">
             {% for article in article_list %}
