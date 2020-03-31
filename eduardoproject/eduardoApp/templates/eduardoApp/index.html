@@ -2,12 +2,19 @@
 
 {% load static %}
 
-{% if article_list %} 
-    <ul>
-        {% for article in article_list %}
-            <li><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No articles...</p>
-{% endif %}
+{% block content%}
+<h1 class="display-4">Liste des catégories</h1>
+
+
+    {% if article_list %} 
+        <ul>
+            {% for article in article_list %}
+            <p>    {{article.category}}            </p>
+                <li><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles...</p>
+    {% endif %}
+{% endblock %}
+<p>TEST</p>

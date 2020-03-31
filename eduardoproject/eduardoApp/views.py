@@ -2,11 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .forms import RegisterForm
 
-from .models import Article
+from .models import Article,Category
 
 # Create your views here.
 
@@ -35,8 +35,7 @@ def register(response):
 
     return render(response, "register/register.html", {"form":form})
 
-def logout(response):
-    auth.logout(respnse)
-    messages.info(response, "Logged out successfully!")
+def logout_view(response):
+    logout(response)
     return redirect("/eduardo")
 
