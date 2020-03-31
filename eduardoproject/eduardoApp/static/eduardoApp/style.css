@@ -53,10 +53,11 @@ body {
 
 .article_image{
   width: 80%;
-    border: 1px solid red;
+    border: 1px solid blue;
     white-space: nowrap;
-    background-color: tomato;
+    background-color: lightskyblue;
     text-align: center; 
+    margin-right: 4px;
 
   
 }
@@ -82,28 +83,18 @@ img {
   width: 80%;
   display: flex;
  
-
-  
 }
 
-.container_vertical
+.article_details
 {
   display: flex;
   flex-direction: column;
   padding:2%;
+  margin-left: 4px;
   background-color: whitesmoke;
 
 }
 
-.container_horizental
-{
-  display: inline-flex;
-  padding-top: 5px;
-  justify-content:flex-end;
-  margin:auto;
-  padding:2%;
-
-}
 
 
 footer{
