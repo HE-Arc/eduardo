@@ -38,24 +38,50 @@ body {
   }
   
 }*/
+.content{
+ 
+  margin-left:auto;
+  margin-right:auto;
+  width: 80%;
+  display: flex;
+  
+
+  
+}
 
 .container_vertical
 {
   display: flex;
   flex-direction: column;
-  background-color: greenyellow;
+  padding:2%;
+  background-color: whitesmoke;
+
 }
 
 .container_horizental
 {
   display: inline-flex;
   padding-top: 5px;
-  justify-content: space-between;
+  justify-content:flex-end;
   margin:auto;
-  background-color: red;
+  padding:2%;
+
 }
+
 
 footer{
   background-color: darkslategray;
   color: white;
 }
+
+nav{
+  margin-bottom: 15px;
+}
+
+.content h2
+{
+  font-size: 1.4em; 
+  font-weight: bold;
+}
+
+

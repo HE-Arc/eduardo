@@ -5,27 +5,33 @@
 
 {% block content%}
 
+<div class="content">
+    <div class="container_horizental">
+        <div class="container_vertical">
+            <img src="{{ article.article_image.url }}" width="400" height="400">
+        </div>
+        <div class="container_vertical">
+            <h1>{{ article.article_name }}</h1>
+            <p>Publié par XXX</p>
+            <h2>Prix: CHF {{ article.price }} .-</h2>
+            <button type="submit" id="button" class="btn btn-primary">Ajouter au panier</button>
+            
+            <h2> Détails </h2>
+            <ul>
+                <li>Quantité : {{ article.quantity }}</li>
+                <li>Etat : {{ article.state }}</li>
+                <li>Couleur : {{ article.color }}</li>
+                <li>Catégorie : {{ article.category }}</li>
+            </ul>
+            <h2>Description</h2>
+            <p>{{article.detail_text}}</p>
 
-<div class="container_horizental">
-    <img src="{{ article.article_image.url }}" width="400" height="400">
-    <div class="container_vertical">
-        <h1>{{ article.article_name }}</h1>
-        <h2>Détails</h2>
-        <ul>
-            <li>Prix : {{ article.price }}</li>
-            <li>Quantité : {{ article.quantity }}</li>
-            <li>Etat : {{ article.state }}</li>
-            <li>Couleur : {{ article.color }}</li>
-            <li>Catégorie : {{ article.category }}</li>
-        </ul>
-        <h2>Description:</h2>
-        <p>{{article.detail_text}}</p>
-
-        <button type="submit" id="button" class="btn btn-primary">Ajouter au panier</button>
-
+            
+        </div>
     </div>
-
-
 </div>
+
+
+
 
 {% endblock %}
