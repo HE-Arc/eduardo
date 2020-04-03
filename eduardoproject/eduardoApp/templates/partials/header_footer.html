@@ -27,6 +27,11 @@
         {% endif %}
         <div class="empty-div">
             {% if user.is_authenticated %}
+            <span class="nav-item" style="display: inline-block;">Bonjour</span> 
+
+            <li class="nav-item" style="display: inline-block;">
+                <a class="nav-link" id="left-item" href="profile">{{user.get_username}}</a>           
+            </li>
             <li class="nav-item" style="display: inline-block;">
                 <a class="nav-link" id="left-item" href="#">Mon panier</a>
             </li>

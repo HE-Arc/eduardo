@@ -116,7 +116,9 @@ footer
   font-size: 1.875em;
 }
 
-  
+ .nav-link{
+   background-color: rgba(0, 0, 0,0);
+ } 
 
 nav{
   margin-bottom: 15px;

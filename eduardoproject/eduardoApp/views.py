@@ -31,6 +31,9 @@ class DetailView(generic.DetailView):
 def vendre(response):
     return render(response, "eduardoApp/vendre.html")
 
+def profile(response):
+    return render(response, "eduardoApp/profile.html")
+
 def register(response):
     if response.method == "POST":
         form = RegisterForm(response.POST)
