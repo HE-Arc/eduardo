@@ -28,7 +28,8 @@ class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'
 
-
+def vendre(response):
+    return render(response, "eduardoApp/vendre.html")
 
 def register(response):
     if response.method == "POST":
