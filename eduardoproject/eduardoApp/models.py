@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.conf import settings 
 
 # Create your models here.
 
@@ -39,14 +40,31 @@ class Article(models.Model):
             'slug':self.slug
         })
 
+    def get_add_to_cart_url(self):
+        return reverse("eduardoApp:add-to-cart", kwargs={
+            'slug':self.slug
+        })
+
+    def get_remove_from_cart_url(self):
+        return reverse("eduardoApp:remove-from-cart", kwargs={
+            'slug':self.slug
+        })
+
 class OrderArticle(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} of {self.article.article_name}"
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     articles = models.ManyToManyField(OrderArticle)
     ordered = models.BooleanField(default=False)
+    ordered_date = models.DateTimeField()
 
     def __str__(self):
-        return self.user.name
+        return self.user.username
