@@ -26,7 +26,7 @@ class Article(models.Model):
     state = models.CharField(max_length=50)
     color = models.CharField(max_length=100)
     detail_text = models.TextField(max_length=600, null=True)
-    article_image = models.ImageField(upload_to="images/")
+    article_image = models.ImageField(upload_to="images/",null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     # seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
