@@ -5,6 +5,18 @@
 {% block content %}
 <form method="GET" action=".">
 
+    <div class="form-group col-12">
+        <div class="input-group">
+            <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Title contains..." />
+            <span class="input-group-append">
+                <div class="input-group-text bg-transparent">
+                    <i class="fa fa-search"></i>
+                </div>
+            </span>
+        </div>
+    </div>        
+
+    
 <div class="form-group col-md-4">
     <label for="category">Category</label>
     <select id="category" class="form-control" name="category">
@@ -13,8 +25,18 @@
       <option value="{{ cat }}">{{ cat }}</option>
       {% endfor %}
     </select>
-    
 </div>
+
+
+
+<div class="form-group col-md-2 col-lg-2">
+    <label for="priceMin">Prix min</label>
+    <input type="number" min=1 class="form-control" id="priceMin" placeholder="1" name="priceMin">
+  </div>
+  <div class="form-group col-md-2 col-lg-2">
+    <label for="priceMax">Prix max</label>
+    <input type="number" min=2 class="form-control" id="priceMax" placeholder="100000" name="priceMax">
+  </div>
 
 
 
@@ -22,7 +44,7 @@
 </form>
 
 <hr />
-<p>Dsda</p>
+<p>Résultats de la recherche</p>
 
       <div class="row">
         <ul>

@@ -71,9 +71,21 @@ def filter(request):
     qs = Article.objects.all()
     categories = Category.objects.all()
     category = request.GET.get('category')
+    priceMin = request.GET.get('priceMin')
+    priceMax = request.GET.get('priceMax')
+    title_contains_query = request.GET.get('title_contains')
+
+    if is_valid_queryparam(title_contains_query):
+        qs = qs.filter(article_name__icontains=title_contains_query)
 
     if is_valid_queryparam(category) and category!= 'Choose...':
         qs = qs.filter(category__name=category)
+
+    if is_valid_queryparam(priceMin):
+        qs = qs.filter(price__gte=priceMin)
+
+    if is_valid_queryparam(priceMax):
+        qs = qs.filter(price__lt=priceMax)
 
     return qs
 
