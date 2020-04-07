@@ -26,17 +26,106 @@ body {
   position: absolute;
   right: 0.625em;
   top: 0.3em;  }
-
+/*
 @media screen and (max-width: 50em) {
   body {
     background-color: olive;
 
   }
+
+  #login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+  }
+  
+}*/
+
+.content
+{
+  margin-left:auto;
+  margin-right:auto;
+  width: 80%;
+  display: flex;
 }
 
-footer{
+.full_article
+{
+  display: inline-flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 2%;
+}
+
+.article_image
+{
+  width: 80%;
+  border: 1px solid blue;
+  white-space: nowrap;
+  background-color: lightskyblue;
+  text-align: center; 
+  margin-right: 4px;
+}
+
+li{
+  background-color: white;
+}
+
+.image 
+{
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+
+img 
+{
+  background: #3A6F9A;
+  vertical-align: middle;
+  max-height: 90%;
+  max-width: 90%;
+}
+
+.article_details
+{
+  display: flex;
+  flex-direction: column;
+  padding:2%;
+  margin-left: 4px;
+  background-color: whitesmoke;
+
+}
+
+footer
+{
   background-color: darkslategray;
   color: white;
 }
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 9.375em;
+  margin: 0.06666666666666667em;
+  text-align: center;
+  line-height: 3.125em;
+  font-size: 1.875em;
+}
+
   
+
+nav{
+  margin-bottom: 15px;
+}
+
+.content h2
+{
+  font-size: 1.4em; 
+  font-weight: bold;
+}
+
 

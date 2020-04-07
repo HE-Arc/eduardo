@@ -17,9 +17,19 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Article.objects.order_by('article_name')
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['category_list'] =Category.objects.all()
+        return context
+    
+
+
 class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'
+
+def vendre(response):
+    return render(response, "eduardoApp/vendre.html")
 
 def register(response):
     if response.method == "POST":
@@ -36,3 +46,7 @@ def logout_view(response):
     logout(response)
     return redirect("/eduardo")
 
+def get_categories(request):
+    category_list=Category.objects.all()
+    context = {'category_list':category_list}
+    return render(request,'eduardoApp/index.html',context)
