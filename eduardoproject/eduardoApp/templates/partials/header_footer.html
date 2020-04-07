@@ -13,17 +13,23 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link" href="/eduardo">Eduardo</a>
+            <a class="nav-link"  href="/eduardo">Eduardo</a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link" href="#">Vendre</a>
+            <a class="nav-link" href="/eduardo/vendre">Vendre</a>
         </li>
         
         <form style="display: inline-block;" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/eduardo/search" style="color:green;"> Recherche avancée</a>
+        </li>
+
+
         {% endif %}
         <div class="empty-div">
             {% if user.is_authenticated %}

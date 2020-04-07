@@ -1,65 +1,71 @@
 {% extends 'partials/header_footer.html' %}
 {% load static %}
+<head>
+    
+</head>
 
 
 {% block content %}
-<form method="GET" action=".">
+<main role="main" class="container">
+<div class="form-search">
+    <h2>Recherche avancée</h2>
 
-    <div class="form-group col-12">
-        <div class="input-group">
+    <form method="GET" action=".">
+    <div class="form-row">
+        <div class="form-group col-4">
+            <label for="priceMin">Nom de l'article</label>  
             <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Title contains..." />
-            <span class="input-group-append">
-                <div class="input-group-text bg-transparent">
-                    <i class="fa fa-search"></i>
-                </div>
-            </span>
+        </div> 
+         
+        <div class="form-group col-md-2">
+            <label for="category">Category</label>
+            <select id="category" class="form-control" name="category">
+                <option selected>Choose...</option>
+                {% for cat in categories %}
+                <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select>
         </div>
-    </div>        
 
-    
-<div class="form-group col-md-4">
-    <label for="category">Category</label>
-    <select id="category" class="form-control" name="category">
-      <option selected>Choose...</option>
-      {% for cat in categories %}
-      <option value="{{ cat }}">{{ cat }}</option>
-      {% endfor %}
-    </select>
-</div>
+        <div class="form-group col-md-2 col-lg-2">
+            <label for="priceMin">Prix min</label>
+            <input type="number" min=1 class="form-control" id="priceMin" placeholder="1" name="priceMin">
+        </div>
+        
+        <div class="form-group col-md-2 col-lg-2">
+            <label for="priceMax">Prix max</label>
+            <input type="number" min=2 class="form-control" id="priceMax" placeholder="100000" name="priceMax">
+        </div>
 
+        <div class="form-group col-md-2 col-lg-2">
+            <label for="priceMax">Lancer</label>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    </form>
+    <hr/>
 
-
-<div class="form-group col-md-2 col-lg-2">
-    <label for="priceMin">Prix min</label>
-    <input type="number" min=1 class="form-control" id="priceMin" placeholder="1" name="priceMin">
-  </div>
-  <div class="form-group col-md-2 col-lg-2">
-    <label for="priceMax">Prix max</label>
-    <input type="number" min=2 class="form-control" id="priceMax" placeholder="100000" name="priceMax">
-  </div>
-
-
-
-<button type="submit" class="btn btn-primary">Search</button>
-</form>
-
-<hr />
-<p>Résultats de la recherche</p>
-
-      <div class="row">
+    <div class="row">
         <ul>
-            <div class="flex-container">
-          {% for article in queryset %}
-          <div><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></div>
-            <hr />
-          {% endfor %}
+        <div class="flex-container">
+            {% for article in queryset %}
+            <div>
+                <div class="article_image_search">
+                    <span class="image"></span>
+                    <img src="{{ article.article_image.url }}">
+                </div>
+                <a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a>
             </div>
+            <hr/>
+            {% endfor %}
+        </div>
         </ul>
-      </div>
+    </div>
+    </main>
 
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       
-
 {% endblock %}

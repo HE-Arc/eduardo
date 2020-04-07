@@ -67,7 +67,18 @@ body {
   margin-right: 4px;
 }
 
-li{
+.article_image_search
+{
+  width: 280px;
+  height: 280px;
+  border: 1px solid blue;
+  white-space: nowrap;
+  background-color: lightskyblue;
+  text-align: center; 
+  margin-right: 4px;
+}
+
+.flex-container li{
   background-color: white;
 }
 
@@ -198,3 +209,28 @@ nav{
   height: 5em;
 }
 
+
+.form-search {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 80em;
+  margin: 0 auto  6.25em;
+  margin-top: 3.5em;
+  padding: 2.8125em;
+
+  box-shadow: 0 0 1.25em
+
+  0 rgba(0, 0, 0, 0.2), 0 0.3125em 0.3125em 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-search h2{
+  text-align: center;
+}
+
+.form-search button {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
