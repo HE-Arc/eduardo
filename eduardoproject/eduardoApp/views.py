@@ -4,7 +4,8 @@ from django.template import loader
 from django.views import generic
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import RegisterForm
+from .forms import RegisterForm,ArticleForm
+
 
 from .models import Article,Category
 
@@ -21,8 +22,17 @@ class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'
 
-def vendre(response):
-    return render(response, "eduardoApp/vendre.html")
+def vendre(request):
+    if request.method == "POST":
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("/eduardo")
+    else:
+        form = ArticleForm()
+    return render(request, "eduardoApp/vendre.html", {
+        "form":form
+    })
 
 def register(response):
     if response.method == "POST":
