@@ -9,6 +9,7 @@ from .forms import RegisterForm,ArticleForm
 
 from .models import Article,Category
 
+
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -56,7 +57,31 @@ def logout_view(response):
     logout(response)
     return redirect("/eduardo")
 
+
+
 def get_categories(request):
     category_list=Category.objects.all()
     context = {'category_list':category_list}
     return render(request,'eduardoApp/index.html',context)
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
+def filter(request):
+    qs = Article.objects.all()
+    categories = Category.objects.all()
+    category = request.GET.get('category')
+
+    if is_valid_queryparam(category) and category!= 'Choose...':
+        qs = qs.filter(category__name=category)
+
+    return qs
+
+
+def search(request):
+    qs =filter(request)
+    context= {
+        'categories': Category.objects.all(),
+        'queryset':qs
+        }
+    return render(request, "eduardoApp/search.html",context)
