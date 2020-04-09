@@ -4,6 +4,8 @@ from django.template import loader
 from django.views import generic
 from django.contrib.auth import authenticate, login, logout
 
+from django.core.paginator import Paginator
+
 from .forms import RegisterForm,ArticleForm
 
 
@@ -87,13 +89,23 @@ def filter(request):
     if is_valid_queryparam(priceMax):
         qs = qs.filter(price__lt=priceMax)
 
+    
+
     return qs
 
 
 def search(request):
     qs =filter(request)
+    paginator = Paginator(qs, 3)
+
+    page = request.GET.get('page')
+
+    qs = paginator.get_page(page)
+    
+   
     context= {
         'categories': Category.objects.all(),
         'queryset':qs
         }
+
     return render(request, "eduardoApp/search.html",context)

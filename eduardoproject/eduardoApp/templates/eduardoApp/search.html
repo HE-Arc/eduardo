@@ -12,7 +12,7 @@
 
     <form method="GET" action=".">
     <div class="form-row">
-        <div class="form-group col-md-2 col-lg-4">
+        <div class="form-group col-md-3 col-lg-4">
             <label for="priceMin">Nom de l'article</label>  
             <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Title contains..." />
         </div> 
@@ -45,8 +45,9 @@
     </form>
     <hr/>
 
-    <div class="row">
-        <ul>
+    
+
+    
         <div class="flex-container">
             {% for article in queryset %}
             <div>
@@ -56,10 +57,31 @@
                 </div>
                 <a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a>
             </div>
-            <hr/>
             {% endfor %}
         </div>
-        </ul>
+    
+
+    <div class="pagination">
+        {% if queryset.has_previous %}
+            
+           <a class="paginastion-item" href="?page={{ queryset.previous_page_number }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}">Précédent</a>
+        {% endif %}
+
+        {% for num in queryset.paginator.page_range %}
+            {% if queryset.number == num %}
+                <span class="pagination-number pagination-current">{{ num }}</span>
+       
+            {% elif num > queryset.number|add:'-3' and num < queryset.number|add:'3' %}
+                  <a class="pagination-number" href="?page={{ num }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}"> {{ num }} </a>
+            {% endif %}
+
+        {% endfor %}
+
+        {% if queryset.has_next %}
+            <a class="pagination-item" href="?page={{ queryset.next_page_number }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}">Suivant</a>
+        {% endif %}
+
+
     </div>
     </main>
 
