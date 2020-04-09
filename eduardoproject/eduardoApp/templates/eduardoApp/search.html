@@ -1,9 +1,8 @@
 {% extends 'partials/header_footer.html' %}
 {% load static %}
 <head>
-    
-</head>
 
+</head>
 
 {% block content %}
 <main role="main" class="container">
@@ -14,13 +13,13 @@
     <div class="form-row">
         <div class="form-group col-md-3 col-lg-4">
             <label for="priceMin">Nom de l'article</label>  
-            <input class="form-control py-2 border-right-0 border" type="search" name="title_contains" placeholder="Title contains..." />
+            <input class="form-control py-2 border-right-0 border"  type="search" name="title_contains" placeholder="Que recherchez-vous ?" />
         </div> 
          
         <div class="form-group col-md-2">
-            <label for="category">Category</label>
+            <label for="category">Catégorie</label>
             <select id="category" class="form-control" name="category">
-                <option selected>Choose...</option>
+                <option selected>Tous</option>
                 {% for cat in categories %}
                 <option value="{{ cat }}">{{ cat }}</option>
                 {% endfor %}
@@ -29,28 +28,28 @@
 
         <div class="form-group col-md-2 col-lg-2">
             <label for="priceMin">Prix min</label>
-            <input type="number" min=1 class="form-control" id="priceMin" placeholder="1" name="priceMin">
+            <input type="number" min=1 class="form-control" id="priceMin" value="1" name="priceMin">
         </div>
         
         <div class="form-group col-md-2 col-lg-2">
             <label for="priceMax">Prix max</label>
-            <input type="number" min=2 class="form-control" id="priceMax" placeholder="100000" name="priceMax">
+            <input type="number" min=2 class="form-control" id="priceMax" value="100000" name="priceMax">
         </div>
 
         <div class="form-group col-md-2 col-lg-2">
-            <label for="priceMax">Lancer</label>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <label for="search"></label>
+            <button class="btn btn-outline-success" type="submit">Rechercher</button>     
         </div>
+
+        
     </div>
     </form>
     <hr/>
-
     
-
-    
-        <div class="flex-container">
+        <div class="search_results">
+           
             {% for article in queryset %}
-            <div>
+            <div class="search_article">
                 <div class="article_image_search">
                     <span class="image"></span>
                     <img src="{{ article.article_image.url }}">
@@ -80,10 +79,8 @@
         {% if queryset.has_next %}
             <a class="pagination-item" href="?page={{ queryset.next_page_number }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}">Suivant</a>
         {% endif %}
-
-
     </div>
-    </main>
+</main>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

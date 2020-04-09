@@ -80,7 +80,7 @@ def filter(request):
     if is_valid_queryparam(title_contains_query):
         qs = qs.filter(article_name__icontains=title_contains_query)
 
-    if is_valid_queryparam(category) and category!= 'Choose...':
+    if is_valid_queryparam(category) and category!= 'Tous':
         qs = qs.filter(category__name=category)
 
     if is_valid_queryparam(priceMin):
@@ -88,9 +88,6 @@ def filter(request):
 
     if is_valid_queryparam(priceMax):
         qs = qs.filter(price__lt=priceMax)
-
-    
-
     return qs
 
 
@@ -101,11 +98,15 @@ def search(request):
     page = request.GET.get('page')
 
     qs = paginator.get_page(page)
+
+    title = request.GET.get('title_contains')
     
    
     context= {
         'categories': Category.objects.all(),
-        'queryset':qs
+        'queryset':qs,
         }
 
     return render(request, "eduardoApp/search.html",context)
+
+
