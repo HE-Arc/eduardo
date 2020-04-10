@@ -40,6 +40,10 @@ class CartListView(generic.ListView):
     context_object_name = 'ordered_articles_list'
 
 
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
+
+
 
 def vendre(response):
     return render(response, "eduardoApp/vendre.html")
@@ -50,7 +54,7 @@ def vendre(request):
         obj=form.save(commit=False)            
         new_slug = form.cleaned_data['article_name']
         obj.slug = slugify(new_slug)
-        #obj.seller = {{user.get_username}}
+        obj.seller = request.user
         obj.save()
         return redirect("/eduardo")
     else:

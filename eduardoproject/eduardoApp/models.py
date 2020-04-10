@@ -22,7 +22,7 @@ class Article(models.Model):
     article_image = models.ImageField(upload_to="images/",null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=False, blank=False)
-    #seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.article_name
