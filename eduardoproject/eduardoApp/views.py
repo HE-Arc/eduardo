@@ -36,7 +36,12 @@ class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'
 
+class ProfileView(generic.ListView):
+    template_name = 'eduardoApp/profile.html'
+    context_object_name = 'order_list'
 
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user.id,ordered=True)
 
 class CartView(LoginRequiredMixin, generic.View):
     def get(self, *args, **kwargs):
@@ -80,9 +85,12 @@ def vendre(request):
     return render(request, "eduardoApp/vendre.html", {
         "form":form
     })
-
+'''    
 def profile(response):
+    orders = Order.objects.filter(user=user.get_username)
     return render(response, "eduardoApp/profile.html")
+'''
+
 
 
 def register(response):

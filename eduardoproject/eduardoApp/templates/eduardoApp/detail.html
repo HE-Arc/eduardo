@@ -15,7 +15,8 @@
         
         <div class="article_details">
             <h1>{{ article.article_name }}</h1>
-            <p>Publié par XXX</p>
+            <h2>Vendu par</h2>
+            <p>{{ article.seller }}</p>
             <h2>Prix: CHF {{ article.price }} .-</h2>
             {% comment %} <button type="submit" id="button" class="btn btn-primary">Ajouter au panier</button> {% endcomment %}
             <a href="{{ article.get_add_to_cart_url }}" id="button" class="btn btn-primary">Ajouter au panier</a>
@@ -32,8 +33,7 @@
             <h2>Description</h2>
             <p>{{article.detail_text}}</p>
 
-            <h2>Vendu par</h2>
-            <p>{{ article.seller }}</p>
+
             
         </div>
     </div>

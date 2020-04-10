@@ -3,12 +3,27 @@
 {% load static %}
 
 {% block content%}
-<h2>Nom Prénom: {{user.get_full_name}}</h2>
-<h2>Identifiant: {{user.get_username}}</h2>
 
-<h3>Voici vos différents achats chez nous</h3>
-<p>ajouter contenu</p>
+<h2>{{user.get_username}},
 
-<h3>Merci de votre confiance.</h3>
+{% if order_list %} 
+voici vos différents achats chez nous</h2>
+
+    {% for order in order_list %}
+<div class="profile_achats">
+        <p> {{ order.user }}  </p>
+        <p> {{ order.articles.all}}  </p>
+        <pl> {{ order.ordered }}  </p>
+        <p> {{ order.ordered_date }}  </p>
+</div>
+    {% endfor %}
+    <div>
+        <h3>Merci de votre confiance.</h3>
+    </div>
+{% else %}
+vous n'avez effectué aucun achat chez nous encore!</h2>
+{% endif %}
+
+
 
 {% endblock %}
