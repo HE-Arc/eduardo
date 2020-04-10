@@ -19,13 +19,8 @@
             <p>{{ article.seller }}</p>
             <h2>Prix: CHF {{ article.price }} .-</h2>
             {% comment %} <button type="submit" id="button" class="btn btn-primary">Ajouter au panier</button> {% endcomment %}
-            {% ifequal article.seller user%}
-            {% else%}
-
             <a href="{{ article.get_add_to_cart_url }}" id="button" class="btn btn-primary">Ajouter au panier</a>
             <a href="{{ article.get_remove_from_cart_url }}" id="button" class="btn btn-danger">Supprimer du panier</a>
-            {% endifequal %}
-
 
             
             <h2> Détails </h2>
