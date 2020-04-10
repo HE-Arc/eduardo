@@ -67,16 +67,7 @@ body {
   margin-right: 4px;
 }
 
-.article_image_search
-{
-  width: 280px;
-  height: 280px;
-  border: 1px solid blue;
-  white-space: nowrap;
-  background-color: lightskyblue;
-  text-align: center; 
-  margin-right: 4px;
-}
+
 
 .flex-container li{
   background-color: white;
@@ -98,13 +89,6 @@ body {
 }
 
 
-img 
-{
-  background: #3A6F9A;
-  vertical-align: middle;
-  max-height: 90%;
-  max-width: 90%;
-}
 
 .article_details
 {

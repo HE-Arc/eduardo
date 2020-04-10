@@ -58,9 +58,9 @@
     
     <div class="search_results">
         {% for article in queryset %}
-        <div class="search_article">
-            <div class="article_image_search">
-                <span class="image"></span>
+        <div class="search_result_article">
+            <div class="search_result_image">
+                <span></span>
                 <img src="{{ article.article_image.url }}">
             </div>
             <a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a>
