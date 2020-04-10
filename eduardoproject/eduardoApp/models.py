@@ -22,7 +22,7 @@ class Article(models.Model):
     article_image = models.ImageField(upload_to="images/",null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=False, blank=False)
-    #seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.article_name
@@ -51,6 +51,12 @@ class OrderArticle(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.article.article_name}"
 
+    def get_article_total_price(self):
+        return self.quantity * self.article.price 
+
+    def get_total_price(self):
+        return self.get_article_total_price()
+
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -60,3 +66,9 @@ class Order(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_total(self):
+        total = 0
+        for article in self.articles.all():
+            total += article.get_total_price()
+        return total
