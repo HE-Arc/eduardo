@@ -1,10 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.template import loader
 from django.views import generic
 from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
 from django.contrib import messages
+from slugify import slugify
 
 from django.core.paginator import Paginator
 
@@ -34,21 +38,43 @@ class DetailView(generic.DetailView):
 
 
 
-class CartListView(generic.ListView):
-    template_name = 'eduardoApp/cart.html'
-    context_object_name = 'ordered_articles_list'
+class CartView(LoginRequiredMixin, generic.View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            context = {
+                'object' : order
+            }
+            return render(self.request, 'eduardoApp/cart.html', context)
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "Pas de commande")
+            return redirect("eduardoApp:index")
 
 
+def validate_order(request):
+    try:
+        order = Order.objects.get(user=request.user, ordered=False)
+        order.ordered = True
+        order.save()
+        messages.info(request, "Commande validée, merci de votre achat !") 
+        return redirect("eduardoApp:index")
+    except ObjectDoesNotExist:
+        messages.error(request, "Impossible de valider les achats")
+        return redirect("eduardo/")
+        
 
 def vendre(response):
     return render(response, "eduardoApp/vendre.html")
 
 def vendre(request):
-    if request.method == "POST":
-        form = ArticleForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect("/eduardo")
+    form = ArticleForm(request.POST or None, request.FILES)
+    if request.method == "POST" and form.is_valid():
+        obj=form.save(commit=False)            
+        new_slug = form.cleaned_data['article_name']
+        obj.slug = slugify(new_slug)
+        obj.seller = request.user
+        obj.save()
+        return redirect("/eduardo")
     else:
         form = ArticleForm()
     return render(request, "eduardoApp/vendre.html", {
@@ -81,7 +107,7 @@ def get_categories(request):
     context = {'category_list':category_list}
     return render(request,'eduardoApp/index.html',context)
 
-
+@login_required
 def add_to_cart(request, slug):
     article = get_object_or_404(Article, slug=slug)
     order_article, created = OrderArticle.objects.get_or_create(
@@ -93,9 +119,7 @@ def add_to_cart(request, slug):
     if order_set.exists():
         order=order_set[0]
         if order.articles.filter(article__slug=article.slug).exists():
-            order_article.quantity += 1
-            order_article.save()
-            messages.info(request, "Quantité mise à jour")
+            messages.warning(request, "Article déjà ajouté au panier")
 
         else:
             messages.info(request, "Article ajouté au panier")
@@ -107,6 +131,7 @@ def add_to_cart(request, slug):
         messages.info(request, "Article ajouté au panier")    
     return redirect('eduardoApp:detail', slug=slug)
 
+@login_required
 def remove_from_cart(request, slug):
     article = get_object_or_404(Article, slug=slug)
     order_set = Order.objects.filter(user=request.user, ordered=False)
@@ -118,7 +143,6 @@ def remove_from_cart(request, slug):
                 user=request.user,
                 ordered=False
             )[0]
-            order_article.quantity -=1
             order.articles.remove(order_article)   
             messages.info(request, "Article supprimé du panier")  
             return redirect("eduardoApp:detail", slug=slug)   
@@ -129,6 +153,9 @@ def remove_from_cart(request, slug):
     else:
         messages.info(request, "Panier vide")
         return redirect("eduardoApp:detail", slug=slug)
+
+
+
 
 def is_valid_queryparam(param):
     return param != '' and param is not None
@@ -157,18 +184,26 @@ def filter(request):
 
 def search(request):
     qs =filter(request)
-    paginator = Paginator(qs, 3)
+    paginator = Paginator(qs, 6)
 
     page = request.GET.get('page')
 
     qs = paginator.get_page(page)
 
     title = request.GET.get('title_contains')
-    
+    category = request.GET.get('category')
+    priceMin = request.GET.get('priceMin')
+    priceMax = request.GET.get('priceMax')
+
    
     context= {
         'categories': Category.objects.all(),
         'queryset':qs,
+        'title':title,
+        'category': category,
+        'priceMin': priceMin,
+        'priceMax': priceMax,
+        
         }
 
     return render(request, "eduardoApp/search.html",context)

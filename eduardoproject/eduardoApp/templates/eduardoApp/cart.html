@@ -3,8 +3,46 @@
 {% load static %}
 
 {% block content%}
+    <main>
+        <div class="container">
+            <div class="table-responsive text-nowrap">
+                <h2>Mon panier</h2>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nom de l'article</th>
+                      <th scope="col">Prix</th>
+                      <th scope="col">Quantité</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order_article in object.articles.all %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ order_article.article.article_name }}</td>
+                      <td>{{ order_article.article.price }}</td>
+                      <td>{{ order_article.quantity }}</td>
+                      <td>{{ order_article.get_article_total_price }}</td>
+                    </tr>
+                    
+                    {% endfor %}
+                    <tr>
+                      <td  colspan="4">Total</td>
+                      <td>{{ object.get_total }} CHF</td>
+                    </tr>
+                    <tr>
+                      <td><a href="{% url 'eduardoApp:index' %}" id=button class="btn btn-primary">Continuer le shopping</a></td> 
+                      <td colspan="3"></td>
+                      <td><a href="{% url 'eduardoApp:validate-order' %}" id=button class="btn btn-warning">Valider les achats</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              
+              </div>
+        </div>
 
-<h2>Mon panier</h2>
-{% if ordered_article_list %}
-
+    </main>
+    
 {% endblock %}
