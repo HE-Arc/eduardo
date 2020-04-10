@@ -5,6 +5,7 @@ from django.views import generic
 from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
 from django.contrib import messages
+from slugify import slugify
 
 from django.core.paginator import Paginator
 
@@ -44,11 +45,14 @@ def vendre(response):
     return render(response, "eduardoApp/vendre.html")
 
 def vendre(request):
-    if request.method == "POST":
-        form = ArticleForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect("/eduardo")
+    form = ArticleForm(request.POST or None, request.FILES)
+    if request.method == "POST" and form.is_valid():
+        obj=form.save(commit=False)            
+        new_slug = form.cleaned_data['article_name']
+        obj.slug = slugify(new_slug)
+        obj.seller = {{user.get_username}}
+        obj.save()
+        return redirect("/eduardo")
     else:
         form = ArticleForm()
     return render(request, "eduardoApp/vendre.html", {

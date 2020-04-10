@@ -13,7 +13,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    article_name = models.CharField(max_length=200)
+    article_name = models.CharField(unique=True, max_length=200)
     price = models.FloatField()
     quantity = models.IntegerField(default=1)
     state = models.CharField(max_length=50)
@@ -21,7 +21,8 @@ class Article(models.Model):
     detail_text = models.TextField(max_length=600, null=True)
     article_image = models.ImageField(upload_to="images/",null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    slug = models.SlugField()
+    slug = models.SlugField(null=False, blank=False)
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.article_name
