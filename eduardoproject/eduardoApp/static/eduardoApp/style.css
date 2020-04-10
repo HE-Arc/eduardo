@@ -136,10 +136,7 @@ footer
   line-height: 3.125em;
   font-size: 1.875em;
   margin-left: auto;
-  margin-right: auto;
-
-
-  
+  margin-right: auto;  
 }
 
   
@@ -242,6 +239,13 @@ nav{
   justify-content: flex-end;
 }
 
+.search_results_label
+{
+  color: rgb(67, 172, 241);
+  font-weight: bold;
+  font-size: 24px;
+}
+
 .search_results {
 
   display: grid;
@@ -260,7 +264,6 @@ nav{
   font-size: 1.875em;
   margin-left: auto;
   margin-right: auto;
-  
 }
 
 .pagination 
@@ -274,7 +277,7 @@ nav{
 
 .pagination-number{
   padding: 0.5em 0.8em;
-  color: #6D85C7;
+  color: #3A6F9A;
   margin: 0 0.1em;
   border-radius: 2px;
 }
@@ -282,14 +285,14 @@ nav{
 .pagination-item
 {
   padding: 0.5em 0.8em;
-  color: #6D85C7;
+  color: #3A6F9A;;
   margin: 0 0.1em;
 }
 
 .pagination-current
 {
   color:white;
-  background-color:#6D85C7 ;
+  background-color:#3A6F9A; ;
 }
 
 input::-webkit-outer-spin-button,
@@ -302,6 +305,16 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.seaa
+{
+  width: 100%;
+  color: white;
+  background-color: green;
+ 
+}
+
+
 
 
 @media (max-width:1200px)
@@ -319,4 +332,3 @@ input[type=number] {
   
   }
 }
-button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,input{overflow:visible}
