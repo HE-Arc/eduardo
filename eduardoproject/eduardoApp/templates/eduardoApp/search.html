@@ -1,25 +1,25 @@
 {% extends 'partials/header_footer.html' %}
 {% load static %}
 <head>
-
+   
 </head>
 
 {% block content %}
 <main role="main" class="container">
-<div class="form-search">
+<div class="search_form">
     <h2>Recherche avancée</h2>
 
     <form method="GET" action=".">
     <div class="form-row">
         <div class="form-group col-md-3 col-lg-4">
             <label for="priceMin">Nom de l'article</label>  
-            <input class="form-control py-2 border-right-0 border"  type="search" name="title_contains" placeholder="Que recherchez-vous ?" />
+            <input class="form-control py-2 border-right-0 border"  type="search" name="title_contains" placeholder="Que recherchez-vous ?" value="{% if title %}{{title}}{% endif %}"/>
         </div> 
          
         <div class="form-group col-md-2">
             <label for="category">Catégorie</label>
             <select id="category" class="form-control" name="category">
-                <option selected>Tous</option>
+                <option selected>{% if category %}{{category}}{% else %}Tous{% endif %}</option>
                 {% for cat in categories %}
                 <option value="{{ cat }}">{{ cat }}</option>
                 {% endfor %}
@@ -28,52 +28,58 @@
 
         <div class="form-group col-md-2 col-lg-2">
             <label for="priceMin">Prix min</label>
-            <input type="number" min=1 class="form-control" id="priceMin" value="1" name="priceMin">
+            <input type="number" min=1 class="form-control" id="priceMin" name="priceMin" value="{% if priceMin %}{{priceMin}}{% else %}1{% endif %}">
         </div>
         
         <div class="form-group col-md-2 col-lg-2">
             <label for="priceMax">Prix max</label>
-            <input type="number" min=2 class="form-control" id="priceMax" value="100000" name="priceMax">
+            <input type="number" min=2 class="form-control" id="priceMax"  name="priceMax" value="{% if priceMax %}{{priceMax}}{% else %}100000{% endif %}">
         </div>
 
         <div class="form-group col-md-2 col-lg-2">
-            <label for="search"></label>
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>     
-        </div>
-
-        
+            <label for="search" style="visibility:hidden;">Hidden</label>
+            <button class="btn btn-outline-success" type="submit">Chercher</button>     
+        </div> 
     </div>
     </form>
+
     <hr/>
+
+    <p class="search_results_label"> 
+       {% if queryset.paginator.count == 0 %}
+            Aucune offre 
+        {% elif queryset.paginator.count  == 1 %}
+             1 offre 
+        {% else %}
+             {{queryset.paginator.count}} offres 
+        {% endif %}
+    </p>
     
-        <div class="search_results">
-           
-            {% for article in queryset %}
-            <div class="search_article">
-                <div class="article_image_search">
-                    <span class="image"></span>
-                    <img src="{{ article.article_image.url }}">
-                </div>
-                <a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a>
+    
+    <div class="search_results">
+        {% for article in queryset %}
+        <div class="search_result_article">
+            <div class="search_result_image">
+                <span></span>
+                <img src="{{ article.article_image.url }}">
             </div>
-            {% endfor %}
+            <a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a>
         </div>
+        {% endfor %}
+    </div>
     
 
     <div class="pagination">
         {% if queryset.has_previous %}
-            
-           <a class="paginastion-item" href="?page={{ queryset.previous_page_number }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}">Précédent</a>
+           <a class="pagination-item" href="?page={{ queryset.previous_page_number }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}">Précédent</a>
         {% endif %}
 
         {% for num in queryset.paginator.page_range %}
             {% if queryset.number == num %}
                 <span class="pagination-number pagination-current">{{ num }}</span>
-       
             {% elif num > queryset.number|add:'-3' and num < queryset.number|add:'3' %}
-                  <a class="pagination-number" href="?page={{ num }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}"> {{ num }} </a>
+                <a class="pagination-number" href="?page={{ num }}{% if request.GET.title_contains %}&title_contains={{ request.GET.title_contains }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}{% if request.GET.priceMin %}&priceMin={{ request.GET.priceMin }}{% endif %}{% if request.GET.priceMax %}&priceMax={{ request.GET.priceMax }}{% endif %}"> {{ num }} </a>
             {% endif %}
-
         {% endfor %}
 
         {% if queryset.has_next %}

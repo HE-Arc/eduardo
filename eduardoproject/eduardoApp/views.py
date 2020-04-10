@@ -181,18 +181,26 @@ def filter(request):
 
 def search(request):
     qs =filter(request)
-    paginator = Paginator(qs, 3)
+    paginator = Paginator(qs, 6)
 
     page = request.GET.get('page')
 
     qs = paginator.get_page(page)
 
     title = request.GET.get('title_contains')
-    
+    category = request.GET.get('category')
+    priceMin = request.GET.get('priceMin')
+    priceMax = request.GET.get('priceMax')
+
    
     context= {
         'categories': Category.objects.all(),
         'queryset':qs,
+        'title':title,
+        'category': category,
+        'priceMin': priceMin,
+        'priceMax': priceMax,
+        
         }
 
     return render(request, "eduardoApp/search.html",context)
