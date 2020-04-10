@@ -23,12 +23,17 @@ class IndexView(generic.ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['category_list'] =Category.objects.all()
         return context
-    
-
 
 class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'
+
+
+class CartListView(generic.ListView):
+    template_name = 'eduardoApp/cart.html'
+    context_object_name = 'ordered_articles_list'
+
+
 
 def vendre(response):
     return render(response, "eduardoApp/vendre.html")
