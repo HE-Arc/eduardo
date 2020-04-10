@@ -50,7 +50,7 @@ def vendre(request):
         obj=form.save(commit=False)            
         new_slug = form.cleaned_data['article_name']
         obj.slug = slugify(new_slug)
-        obj.seller = {{user.get_username}}
+        #obj.seller = {{user.get_username}}
         obj.save()
         return redirect("/eduardo")
     else:
