@@ -158,7 +158,7 @@ def filter(request):
 
 def search(request):
     qs =filter(request)
-    paginator = Paginator(qs, 3)
+    paginator = Paginator(qs, 6)
 
     page = request.GET.get('page')
 
