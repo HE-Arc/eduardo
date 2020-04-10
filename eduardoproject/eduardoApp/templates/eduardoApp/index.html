@@ -2,6 +2,7 @@
 
 {% load static %}
 
+
 {% block content%}
 
 
@@ -21,7 +22,7 @@
     {% if article_list %} 
         <div class="flex-container">
             {% for article in article_list %}
-                <div><a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a></div>
+                <div><a href="{{ article.get_absolute_url }}">{{ article.article_name }}</a></div>
             {% endfor %}
         </div>
     {% else %}
