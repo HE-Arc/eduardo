@@ -23,7 +23,9 @@
     {% if article_list %} 
         <div class="flex-container">
             {% for article in article_list %}
-                <div><a href="{{ article.get_absolute_url }}">{{ article.article_name }}</a></div>
+                {% if article.availlable == True %}
+                    <div><a href="{{ article.get_absolute_url }}">{{ article.article_name }}</a></div>
+                {% endif %}
             {% endfor %}
         </div>
     {% else %}
