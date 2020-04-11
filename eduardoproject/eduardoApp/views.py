@@ -9,11 +9,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.utils import timezone
 from django.contrib import messages
 from slugify import slugify
-
 from django.core.paginator import Paginator
 
-from .forms import RegisterForm,ArticleForm
-
+from .forms import RegisterForm, ArticleForm
 
 from .models import Article, Category, Order, OrderArticle
 
@@ -29,19 +27,12 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['category_list'] =Category.objects.all()
+        context['category_list'] = Category.objects.all()
         return context
 
 class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'
-
-class ProfileView(generic.ListView):
-    template_name = 'eduardoApp/profile.html'
-    context_object_name = 'order_list'
-
-    def get_queryset(self):
-        return Order.objects.filter(user=self.request.user.id,ordered=True)
 
 class CartView(LoginRequiredMixin, generic.View):
     def get(self, *args, **kwargs):
@@ -55,12 +46,23 @@ class CartView(LoginRequiredMixin, generic.View):
             messages.warning(self.request, "Pas de commande")
             return redirect("eduardoApp:index")
 
+class ProfileView(generic.ListView):
+    template_name = 'eduardoApp/profile.html'
+    context_object_name = 'order_list'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user.id,ordered=True)
+
 
 def validate_order(request):
     try:
         order = Order.objects.get(user=request.user, ordered=False)
         order.ordered = True
         order.save()
+        for order_article in order.articles.all():
+            order_article.article.availlable = False
+            order_article.article.save()
+            
         messages.info(request, "Commande validée, merci de votre achat !") 
         return redirect("eduardoApp:index")
     except ObjectDoesNotExist:
@@ -85,12 +87,6 @@ def vendre(request):
     return render(request, "eduardoApp/vendre.html", {
         "form":form
     })
-'''    
-def profile(response):
-    orders = Order.objects.filter(user=user.get_username)
-    return render(response, "eduardoApp/profile.html")
-'''
-
 
 
 def register(response):
@@ -192,26 +188,18 @@ def filter(request):
 
 def search(request):
     qs =filter(request)
-    paginator = Paginator(qs, 6)
+    paginator = Paginator(qs, 3)
 
     page = request.GET.get('page')
 
     qs = paginator.get_page(page)
 
     title = request.GET.get('title_contains')
-    category = request.GET.get('category')
-    priceMin = request.GET.get('priceMin')
-    priceMax = request.GET.get('priceMax')
-
+    
    
     context= {
         'categories': Category.objects.all(),
         'queryset':qs,
-        'title':title,
-        'category': category,
-        'priceMin': priceMin,
-        'priceMax': priceMax,
-        
         }
 
     return render(request, "eduardoApp/search.html",context)

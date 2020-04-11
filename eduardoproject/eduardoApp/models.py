@@ -23,6 +23,7 @@ class Article(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=False, blank=False)
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    availlable = models.BooleanField(default=True)
 
     def __str__(self):
         return self.article_name
