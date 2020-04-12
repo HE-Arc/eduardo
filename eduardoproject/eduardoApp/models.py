@@ -13,7 +13,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    article_name = models.CharField(unique=True, max_length=200)
+    article_name = models.CharField(unique=True, max_length=30)
     price = models.FloatField()
     quantity = models.IntegerField(default=1)
     state = models.CharField(max_length=50)
