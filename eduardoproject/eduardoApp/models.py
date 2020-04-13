@@ -1,6 +1,7 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.conf import settings 
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -12,9 +13,10 @@ class Category(models.Model):
         return self.name
 
 
+
 class Article(models.Model):
     article_name = models.CharField(unique=True, max_length=30)
-    price = models.FloatField()
+    price = models.FloatField(validators=[MinValueValidator(0)])
     quantity = models.IntegerField(default=1)
     state = models.CharField(max_length=50)
     color = models.CharField(max_length=100)
