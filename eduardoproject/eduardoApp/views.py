@@ -70,22 +70,26 @@ def validate_order(request):
         messages.error(request, "Impossible de valider les achats")
         return redirect("eduardo/")
         
+class VendreView(LoginRequiredMixin,generic.View):
+    login_url = '/login/'
+    def post(self,request):
+        form = ArticleForm(request.POST or None, request.FILES)
+        if request.method == "POST" and form.is_valid():
+            obj=form.save(commit=False)            
+            new_slug = form.cleaned_data['article_name']
+            obj.slug = slugify(new_slug)
+            obj.seller = request.user
+            obj.save()
+            return redirect("/eduardo")
+        else:
+            form = ArticleForm()
+        return render(request, "eduardoApp/vendre.html", {
+            "form":form
+        })
 
-@login_required(login_url="/login/")
-def vendre(request):
-    form = ArticleForm(request.POST or None, request.FILES)
-    if request.method == "POST" and form.is_valid():
-        obj=form.save(commit=False)            
-        new_slug = form.cleaned_data['article_name']
-        obj.slug = slugify(new_slug)
-        obj.seller = request.user
-        obj.save()
-        return redirect("/eduardo")
-    else:
+    def get(self,request):
         form = ArticleForm()
-    return render(request, "eduardoApp/vendre.html", {
-        "form":form
-    })
+        return render(request, "eduardoApp/vendre.html", {"form":form})
 
 class RegisterView(generic.View):
     def post(self, request):
@@ -100,7 +104,7 @@ class RegisterView(generic.View):
     def get(self, request):
         form = RegisterForm()
         return render(request, "register/register.html", {"form":form})
-        
+
 def logout_view(response):
     logout(response)
     return redirect("/eduardo")
