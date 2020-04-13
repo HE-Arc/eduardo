@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.contrib import messages
 from slugify import slugify
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, ArticleForm
 
@@ -70,9 +71,7 @@ def validate_order(request):
         return redirect("eduardo/")
         
 
-def vendre(response):
-    return render(response, "eduardoApp/vendre.html")
-
+@login_required(login_url="/login/")
 def vendre(request):
     form = ArticleForm(request.POST or None, request.FILES)
     if request.method == "POST" and form.is_valid():
