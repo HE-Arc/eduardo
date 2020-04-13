@@ -4,6 +4,102 @@
 
 {% block content%}
     <main>
+
+      <div class="container my-5 py-3 z-depth-1 rounded">
+
+
+        <!--Section: Content-->
+        <section class="dark-grey-text">
+      
+          <!-- Shopping Cart table -->
+          <div class="table-responsive">
+      
+            <table class="table product-table mb-0">
+      
+              <!-- Table head -->
+              <thead class="mdb-color lighten-5">
+                <tr>
+                  <th></th>
+                  <th class="font-weight-bold">
+                    <strong>Article</strong>
+                  </th>
+                  <th class="font-weight-bold">
+                    <strong>Couleur</strong>
+                  </th>
+                  <th></th>
+                  <th class="font-weight-bold">
+                    <strong>Prix</strong>
+                  </th>
+                  <th class="font-weight-bold">
+                    <strong>Quantité</strong>
+                  </th>
+                  <th class="font-weight-bold">
+                    <strong>Total</strong>
+                  </th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- /.Table head -->
+      
+              <!-- Table body -->
+              <tbody>
+                {% for order_article in object.articles.all %}
+                    <!-- First row -->
+                    <tr>
+                    <th scope="row">
+                      <img src="{{ order_article.article.article_image.url }}" alt="" class="img-fluid z-depth-0" width="20%">
+                    </th>
+                    <td>
+                      <h5 class="mt-3">
+                        <strong><a href="{{ order_article.article.get_absolute_url }}">{{ order_article.article.article_name }}</a></strong>
+                      </h5>
+                    </td>
+                    <td>{{ order_article.article.color }}</td>
+                    <td></td>
+                    <td>{{ order_article.article.price }} CHF</td>
+                    <td>{{ order_article.quantity }}</td>
+                    <td class="font-weight-bold">
+                      <strong>{{ order_article.get_article_total_price }} CHF</strong>
+                    </td>
+                    <td>
+                      {% comment %}
+                      <button type="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top"
+                        title="Remove item">X
+                      </button>
+                      {% endcomment %}
+                      <a href="{{ article.get_remove_from_cart_url }}" id="button" class="btn btn-sm btn-primary">X</a>
+                    </td>
+                  </tr>
+                  <!-- /.First row -->
+
+                {% endfor %}
+                <tr>
+                  <td  colspan="6">Total</td>
+                  <td>{{ object.get_total }} CHF</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><a href="{% url 'eduardoApp:index' %}" id=button class="btn btn-primary">Continuer le shopping</a></td> 
+                  <td colspan="6"></td>
+                  <td><a href="{% url 'eduardoApp:validate-order' %}" id=button class="btn btn-warning">Valider les achats</a></td>
+                </tr>
+              </tbody>
+              <!-- /.Table body -->
+      
+            </table>
+      
+          </div>
+          <!-- /.Shopping Cart table -->
+      
+        </section>
+        <!--Section: Content-->
+      
+      
+      </div>
+
+
+
+      {% comment %}
         <div class="container">
             <div class="table-responsive text-nowrap">
                 <h2>Mon panier</h2>
@@ -42,7 +138,7 @@
               
               </div>
         </div>
-
+        {% endcomment %}
     </main>
     
 {% endblock %}
