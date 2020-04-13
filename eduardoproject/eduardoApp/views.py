@@ -13,7 +13,7 @@ from django.core.paginator import Paginator
 
 from .forms import RegisterForm, ArticleForm
 
-from .models import Article, Category, Order, OrderArticle
+from .models import Article, Category, Order, OrderArticle, State, Color
 
 
 # Create your views here.

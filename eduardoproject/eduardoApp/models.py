@@ -12,14 +12,27 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class State(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Color(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 
 
 class Article(models.Model):
     article_name = models.CharField(unique=True, max_length=30)
     price = models.FloatField(validators=[MinValueValidator(0)])
     quantity = models.IntegerField(default=1)
-    state = models.CharField(max_length=50)
-    color = models.CharField(max_length=100)
+    state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True)
     detail_text = models.TextField(max_length=600, null=True)
     article_image = models.ImageField(upload_to="images/",null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
