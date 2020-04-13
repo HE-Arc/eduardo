@@ -61,7 +61,7 @@ def validate_order(request):
         order.ordered = True
         order.save()
         for order_article in order.articles.all():
-            order_article.article.availlable = False
+            order_article.article.available = False
             order_article.article.save()
             
         messages.info(request, "Commande validée, merci de votre achat !") 
@@ -182,6 +182,8 @@ def filter(request):
 
     if is_valid_queryparam(priceMax):
         qs = qs.filter(price__lt=priceMax)
+
+    qs = qs.filter(available=True)
     return qs
 
 

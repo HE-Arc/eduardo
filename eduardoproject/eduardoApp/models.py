@@ -30,7 +30,6 @@ class Color(models.Model):
 class Article(models.Model):
     article_name = models.CharField(unique=True, max_length=30)
     price = models.FloatField(validators=[MinValueValidator(0)])
-    quantity = models.IntegerField(default=1)
     state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
     color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True)
     detail_text = models.TextField(max_length=600, null=True)
@@ -38,7 +37,7 @@ class Article(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=False, blank=False)
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
-    availlable = models.BooleanField(default=True)
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.article_name
@@ -62,13 +61,12 @@ class OrderArticle(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return f"{self.quantity} of {self.article.article_name}"
+        return self.article.article_name
 
     def get_article_total_price(self):
-        return self.quantity * self.article.price 
+        return self.article.price 
 
     def get_total_price(self):
         return self.get_article_total_price()
