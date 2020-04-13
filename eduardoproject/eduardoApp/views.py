@@ -87,18 +87,20 @@ def vendre(request):
         "form":form
     })
 
-
-def register(response):
-    if response.method == "POST":
-        form = RegisterForm(response.POST)
+class RegisterView(generic.View):
+    def post(self, request):
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("/login")
-    else:
+        else:
+            form = RegisterForm()
+        return render(request, "register/register.html", {"form":form})
+
+    def get(self, request):
         form = RegisterForm()
-
-    return render(response, "register/register.html", {"form":form})
-
+        return render(request, "register/register.html", {"form":form})
+        
 def logout_view(response):
     logout(response)
     return redirect("/eduardo")
