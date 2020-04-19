@@ -73,8 +73,13 @@ class ProfileView(generic.ListView):
 def validate_order(request):
     try:
         order = Order.objects.get(user=request.user, ordered=False)
-        order.ordered = True
-        order.save()
+        for order_article in order.articles.all():
+                if not order_article.article.available:
+                    messages.warning(request, "Erreur dans la validation du panier. Un ou plusieurs articles indisponible(s).") 
+                    return redirect('eduardoApp:cart')
+                else:
+                    order.ordered = True
+                    order.save()
         for order_article in order.articles.all():
             order_article.article.available = False
             order_article.article.save()
