@@ -31,8 +31,6 @@ class Color(models.Model):
         return self.name
 
 
-
-
 class Article(models.Model):
     article_name = models.CharField(unique=True, max_length=30)
     price = models.FloatField(validators=[MinValueValidator(0)])

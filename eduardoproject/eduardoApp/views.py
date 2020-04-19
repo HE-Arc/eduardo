@@ -40,8 +40,11 @@ class ArticleByCategoryView(generic.ListView):
         cat = Category.objects.filter(slug=self.kwargs['slug'])[0]
         return Article.objects.filter(category=cat.id)
         
-    
-
+    def get_context_data(self, **kwargs):
+        context = super(ArticleByCategoryView, self).get_context_data(**kwargs)
+        context['category'] = Category.objects.filter(slug=self.kwargs['slug'])[0]
+        return context
+        
 
 class DetailView(generic.DetailView):
     model = Article
