@@ -31,6 +31,18 @@ class IndexView(generic.ListView):
         context['category_list'] = Category.objects.all()
         return context
 
+
+class ArticleByCategoryView(generic.ListView):
+    template_name = 'eduardoApp/articles_by_category.html'
+    context_object_name = 'article_list'
+
+    def get_queryset(self, *args, **kwargs):
+        cat = Category.objects.filter(slug=self.kwargs['slug'])[0]
+        return Article.objects.filter(category=cat.id)
+        
+    
+
+
 class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'

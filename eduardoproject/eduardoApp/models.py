@@ -8,9 +8,15 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # -------------- Articles ---------------
 class Category(models.Model):
     name = models.CharField(max_length=100)
-
+    slug = models.SlugField(null=False, blank=False)
+    
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("eduardoApp:category", kwargs={
+            'slug':self.slug
+        })
 
 class State(models.Model):
     name = models.CharField(max_length=100)

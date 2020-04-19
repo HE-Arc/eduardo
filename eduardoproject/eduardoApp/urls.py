@@ -5,6 +5,7 @@ from . import views
 app_name = 'eduardoApp'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
+    path('category/<slug>/', views.ArticleByCategoryView.as_view(), name='category'),
     path('article/<slug>/', views.DetailView.as_view(), name='detail'), 
     path("vendre/", views.VendreView.as_view(), name="vendre"),
     path('profile',views.ProfileView.as_view(),name='profile'),
