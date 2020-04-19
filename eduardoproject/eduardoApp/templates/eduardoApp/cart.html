@@ -23,9 +23,7 @@
         <strong>Prix</strong>
       </th>
 
-      <th class="font-weight-bold">
-        <strong>Total</strong>
-      </th>
+     
       <th></th>
     </tr>
   </thead>
@@ -51,10 +49,8 @@
         </td>
         <td>{{ order_article.article.color }}</td>
         <td></td>
-        <td>{{ order_article.article.price }} CHF</td>
-        <td class="font-weight-bold">
-          <strong>{{ order_article.get_article_total_price }} CHF</strong>
-        </td>
+        <td>{{ order_article.article.price |floatformat:"2" }} CHF</td>
+        
         <td>
           {% comment %}
           <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top"
@@ -69,10 +65,11 @@
     {% endfor %}
     <!-- buttons -->
     <tr>
-      <td  colspan="5">Total</td>
-      <td>{{ object.get_total }} CHF</td>
+      <td  class="font-weight-bold" colspan="4">Total</td>
+      <td class="font-weight-bold" >{{ object.get_total |floatformat:"2"  }} CHF</td>
       <td></td>
     </tr>
+    
    
     
     <!-- /. buttons -->
@@ -83,6 +80,7 @@
   <!-- /.Table body -->
 
 </table>
+<hr>
 <a href="{% url 'eduardoApp:index' %}" id=button class="btn btn-primary">Continuer les achats</a>
 <a href="{% url 'eduardoApp:validate-order' %}" id=button class="btn btn-warning">Valider les achats</a>
 
@@ -122,6 +120,7 @@
                   </th>
                   <th></th>
                 </tr>
+                
               </thead>
               <!-- /.Table head -->
       
