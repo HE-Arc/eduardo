@@ -109,7 +109,6 @@
                       <th scope="col">#</th>
                       <th scope="col">Nom de l'article</th>
                       <th scope="col">Prix</th>
-                      <th scope="col">Quantité</th>
                       <th scope="col">Total</th>
                     </tr>
                   </thead>
@@ -119,7 +118,6 @@
                       <th scope="row">{{ forloop.counter }}</th>
                       <td>{{ order_article.article.article_name }}</td>
                       <td>{{ order_article.article.price }}</td>
-                      <td>{{ order_article.quantity }}</td>
                       <td>{{ order_article.get_article_total_price }}</td>
                     </tr>
                     

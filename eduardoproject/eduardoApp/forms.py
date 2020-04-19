@@ -16,4 +16,13 @@ class RegisterForm(UserCreationForm):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ["article_name", "category", "price", "quantity", "state", "color", "detail_text", "article_image"]
+        fields = ["article_name", "category", "price", "state", "color", "detail_text", "article_image"]
+        labels = {
+            'article_name': 'Nom de l\'article',
+            'category' : 'Catégorie',
+            'price': 'Prix',
+            'state': 'Etat',
+            'color': 'Couleur',
+            'detail_text': 'Description',
+            'article_image': 'Image',
+        }

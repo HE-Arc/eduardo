@@ -25,7 +25,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('eduardo/', include('eduardoApp.urls')),
     path('admin/', admin.site.urls),
-    path('register/',v.register,name='register'),
+    path('register/',v.RegisterView.as_view(),name='register'),
     path('', include("django.contrib.auth.urls")),
     path('logout',v.logout_view,name='logout'),
 ]

@@ -10,10 +10,11 @@ from django.utils import timezone
 from django.contrib import messages
 from slugify import slugify
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, ArticleForm
 
-from .models import Article, Category, Order, OrderArticle
+from .models import Article, Category, Order, OrderArticle, State, Color
 
 
 # Create your views here.
@@ -60,7 +61,7 @@ def validate_order(request):
         order.ordered = True
         order.save()
         for order_article in order.articles.all():
-            order_article.article.availlable = False
+            order_article.article.available = False
             order_article.article.save()
             
         messages.info(request, "Commande validée, merci de votre achat !") 
@@ -69,36 +70,40 @@ def validate_order(request):
         messages.error(request, "Impossible de valider les achats")
         return redirect("eduardo/")
         
+class VendreView(LoginRequiredMixin,generic.View):
+    login_url = '/login/'
+    def post(self,request):
+        form = ArticleForm(request.POST or None, request.FILES)
+        if request.method == "POST" and form.is_valid():
+            obj=form.save(commit=False)            
+            new_slug = form.cleaned_data['article_name']
+            obj.slug = slugify(new_slug)
+            obj.seller = request.user
+            obj.save()
+            return redirect("/eduardo")
+        else:
+            form = ArticleForm()
+        return render(request, "eduardoApp/vendre.html", {
+            "form":form
+        })
 
-def vendre(response):
-    return render(response, "eduardoApp/vendre.html")
-
-def vendre(request):
-    form = ArticleForm(request.POST or None, request.FILES)
-    if request.method == "POST" and form.is_valid():
-        obj=form.save(commit=False)            
-        new_slug = form.cleaned_data['article_name']
-        obj.slug = slugify(new_slug)
-        obj.seller = request.user
-        obj.save()
-        return redirect("/eduardo")
-    else:
+    def get(self,request):
         form = ArticleForm()
-    return render(request, "eduardoApp/vendre.html", {
-        "form":form
-    })
+        return render(request, "eduardoApp/vendre.html", {"form":form})
 
-
-def register(response):
-    if response.method == "POST":
-        form = RegisterForm(response.POST)
+class RegisterView(generic.View):
+    def post(self, request):
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("/login")
-    else:
-        form = RegisterForm()
+        else:
+            form = RegisterForm()
+        return render(request, "register/register.html", {"form":form})
 
-    return render(response, "register/register.html", {"form":form})
+    def get(self, request):
+        form = RegisterForm()
+        return render(request, "register/register.html", {"form":form})
 
 def logout_view(response):
     logout(response)
@@ -183,6 +188,8 @@ def filter(request):
 
     if is_valid_queryparam(priceMax):
         qs = qs.filter(price__lt=priceMax)
+
+    qs = qs.filter(available=True)
     return qs
 
 

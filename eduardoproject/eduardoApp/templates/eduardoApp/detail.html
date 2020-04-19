@@ -5,19 +5,18 @@
 
 {% block content%}
 
-<div class="content">
-    <div class="full_article">
+<div class="article_page">
+    <div class="article">
         <div class="article_image">
-            <span class="image"></span>
+            <span></span>
             <img src="{{ article.article_image.url }}">
         </div>
         
         
         <div class="article_details">
             <h1>{{ article.article_name }}</h1>
-            <h2>Vendu par</h2>
-            <p>{{ article.seller }}</p>
-            <h2>Prix: CHF {{ article.price }} .-</h2>
+            <p>Publié par {{ article.seller }}</p> 
+            <h2 class="price"> CHF {{ article.price |floatformat:"2" }}.-</h2>
             {% comment %} <button type="submit" id="button" class="btn btn-primary">Ajouter au panier</button> {% endcomment %}
             {% ifequal article.seller user%}
             {% else %}
@@ -30,13 +29,12 @@
             
             <h2> Détails </h2>
             <ul>
-                <li>Quantité : {{ article.quantity }}</li>
                 <li>Etat : {{ article.state }}</li>
                 <li>Couleur : {{ article.color }}</li>
                 <li>Catégorie : {{ article.category }}</li>
             </ul>
             <h2>Description</h2>
-            <p>{{article.detail_text}}</p>
+            <p class="description">{{article.detail_text}}</p>
 
 
             

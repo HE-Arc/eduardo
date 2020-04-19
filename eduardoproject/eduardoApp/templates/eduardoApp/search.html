@@ -63,7 +63,7 @@
                 <span></span>
                 <img src="{{ article.article_image.url }}">
             </div>
-            <a href="{% url 'eduardoApp:detail' article.id %}">{{ article.article_name }}</a>
+            <a href="{% url 'eduardoApp:detail' article.slug %}">{{ article.article_name }}</a>
         </div>
         {% endfor %}
     </div>
