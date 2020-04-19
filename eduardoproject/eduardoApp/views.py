@@ -22,6 +22,7 @@ from .models import Article, Category, Order, OrderArticle, State, Color
 class IndexView(generic.ListView):
     template_name = 'eduardoApp/index.html'
     context_object_name = 'article_list'
+    paginate_by = 12
 
     def get_queryset(self):
         return Article.objects.order_by('article_name')
