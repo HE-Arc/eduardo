@@ -8,10 +8,8 @@
 <main role="main" class="container">
 <div class="index_page">
     <div class="index_categorys">
-
         {% for category in category_list %}
         <div class=" card index_category">
-
             <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
         </div>
                {% endfor %}
