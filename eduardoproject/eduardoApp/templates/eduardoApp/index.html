@@ -20,55 +20,57 @@
     {% endif %}
 
 <h2>Liste des articles</h2>
-
-    {% if article_list %} 
-        <div class="flex-container">
-            {% for article in article_list %}
-                {% if article.availlable == True %}
-                {% comment %} <div><a href="{{ article.get_absolute_url }}">{{ article.article_name }}</a></div>{% endcomment %}
-                <div class="container my-5">
-
-                    <!-- Section: Block Content -->
-                    <section>
-                  
-                      <div class="row">
-
-                          <!-- Card -->
-                          <div class="card hoverable mb-4">
-                            <div class="card-body">
-                              <div class="row align-items-center">
-                                <div class="col-6 px-0">
-                                  <a href="{{ article.get_absolute_url }}">
-                                    <img src="{{ article.article_image.url }}"
-                                      class="img-fluid">
-                                  </a>
+    <main>   
+        {% if article_list %}  
+            <div class="container my-5">
+                
+                <!-- Section: Block Content -->
+                <section>
+                            
+                <!-- Grid row -->
+                <div class="row">
+                    {% for article in article_list %}
+                        {% if article.availlable %}
+                            <!-- Grid column -->
+                            <div class="col-lg-4 col-md-12 mb-4">
+                    
+                            <!-- Card -->
+                            <div class="card card-ecommerce">
+                                <div class="view overlay">
+                                    <span></span>
+                                    <a href="{{ article.get_absolute_url }}">
+                                        <img src="{{ article.article_image.url }}" class="img-fluid"
+                                        alt="Sample image">
+                                    </a>
                                 </div>
-                                <div class="col-6">
-                                  <a>
-                                    <strong>{{ article.article_name }}</strong>
-                                  </a>
-                                  <h6 class="h6-responsive font-weight-bold dark-grey-text">
-                                    <strong>{{ article.price }} CHF</strong>
-                                  </h6>
+                                <div class="card-body">
+                                <h5 class="card-title mb-1"><strong><a href="{{ article.get_absolute_url }}" class="dark-grey-text">{{ article.article_name }}</a></strong></h5>
+                                </ul>
+                                <div class="card-footer pb-0">
+                                    <div class="row mb-0">
+                                    <span class="float-left"><strong>{{ article.price }} CHF</strong></span>
+                                    
+                                    </div>
                                 </div>
-                              </div>
+                                </div>
                             </div>
-                          </div>
-                          <!-- Card -->
-                  
-                      </div>
-                  
-                    </section>
-                    <!-- Section: Block Content -->
-                  
-                  </div>    
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>No articles...</p>
-    {% endif %}
-
-
-
+                            <!-- Card -->
+                    
+                            </div>
+                            <!-- Grid column -->
+                        {% endif %}
+                    {% endfor %}
+                    
+            
+                </div>
+                <!-- Grid row -->
+            
+                </section>
+                <!-- Section: Block Content -->
+            
+            </div>
+        {% else %}
+          <p>No articles...</p>
+       {% endif %}
+    </main>
 {% endblock %}
