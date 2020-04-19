@@ -63,7 +63,15 @@
                 <span></span>
                 <img src="{{ article.article_image.url }}">
             </div>
-            <a href="{% url 'eduardoApp:detail' article.slug %}">{{ article.article_name }}</a>
+            <div class="search_result_details">
+                <strong>
+                    <a href="{% url 'eduardoApp:detail' article.slug %}">{{ article.article_name }}</a>
+                </strong>
+                <div class="search_result_price">
+                    <strong> CHF {{ article.price |floatformat:"2" }}.-</strong>
+                </div>
+                
+            </div>
         </div>
         {% endfor %}
     </div>
