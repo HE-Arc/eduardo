@@ -12,3 +12,32 @@ footer
     background-color: darkslategray;
     color: white;
 }
+
+.index_page
+{
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 90em;
+    margin: 0 auto  6.25em;
+    margin-top: 3.5em;
+    padding: 2.8125em;
+    box-shadow: 0 0 1.25em 0 rgba(0, 0, 0, 0.2), 0 0.3125em 0.3125em 0 rgba(0, 0, 0, 0.24);
+}
+
+.index_categorys
+{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+}
+
+.index_category
+{
+    background-color: #f1f1f1;
+    margin: 0.26666666666666667em;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 1.5em;
+    height: 3em;
+    overflow-wrap: break-word;
+}
