@@ -111,6 +111,17 @@ footer
 }
 
 
+.nav-search-bar
+{
+  width: 50%;
+  margin-right: 5px;
+}
+
+.nav-search-btn
+{
+  padding: 9px 15px 9px 15px;
+}
+
 
 @media (max-width:1200px)
 {
