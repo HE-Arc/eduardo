@@ -149,6 +149,7 @@ def add_to_cart(request, slug):
         order=order_set[0]
         if order.articles.filter(article__slug=article.slug).exists():
             messages.warning(request, "Article déjà ajouté au panier")
+            return redirect('eduardoApp:detail', slug=slug)
 
         else:
             messages.info(request, "Article ajouté au panier")
@@ -158,7 +159,7 @@ def add_to_cart(request, slug):
         order = Order.objects.create(user=request.user, ordered_date = ordered_date)
         order.articles.add(order_article)
         messages.info(request, "Article ajouté au panier")    
-    return redirect('eduardoApp:detail', slug=slug)
+    return redirect('eduardoApp:cart')
 
 @login_required
 def remove_from_cart(request, slug):
