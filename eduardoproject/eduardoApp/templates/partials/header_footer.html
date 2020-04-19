@@ -22,16 +22,16 @@
             <a class="nav-link"  href="{% url 'eduardoApp:index' %}">Eduardo</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/eduardo/vendre">Vendre</a>
+            <a class="nav-link" href="{% url 'eduardoApp:vendre' %}">Vendre</a>
         </li>
         
-        <form style="display: inline-block;" class="form-inline my-2 my-lg-0" action="/eduardo/search/">
+        <form style="display: inline-block;" class="form-inline my-2 my-lg-0" action="{% url 'eduardoApp:search' %}">
             <input class="form-control mr-sm-2" type="search"  name="title_contains" placeholder="Que recherchez-vous ?" aria-label="Search" >
             <button class="btn btn-outline-success my-2 my-sm-0"  type="submit" ><i class="fa fa-search"></i></button>       
         </form>
 
         <li class="nav-item">
-            <a class="nav-link" href="/eduardo/search" style="color:green;"> Recherche avancée</a>
+            <a class="nav-link" href="{% url 'eduardoApp:search' %}" style="color:green;"> Recherche avancée</a>
         </li>
 
 
@@ -40,7 +40,7 @@
             <span class="nav-item" style="display: inline-block;">Bonjour</span> 
 
             <li class="nav-item" style="display: inline-block;">
-                <a class="nav-link" id="left-item" href="profile">{{user.get_username}}</a>           
+                <a class="nav-link" id="left-item" href="{% url 'eduardoApp:profile' %}">{{user.get_username}}</a>           
             </li>
             <li class="nav-item" style="display: inline-block;">
                 <a class="nav-link" id="left-item" href="{% url 'eduardoApp:cart' %}">Mon panier</a>
@@ -48,12 +48,12 @@
             {% endif %}
             {% if user.is_authenticated %}
             <li class="nav-item" style="display: inline-block;">
-                <a id="left-item" class="nav-link" href="/logout">Se déconnecter</a>
+                <a id="left-item" class="nav-link" href="{% url 'logout' %}">Se déconnecter</a>
             </li>
             {% else %}
 
             <li class="nav-item" style="display: inline-block;">
-                <a id="left-item" class="nav-link" href="/login">S'identifier</a>
+                <a id="left-item" class="nav-link" href="{% url 'login' %}">S'identifier</a>
             </li>
             {% endif %}
 
