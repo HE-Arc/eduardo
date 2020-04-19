@@ -56,18 +56,18 @@
     </p>
     
     
-    <div class="search_results">
+    <div class="articles_preview">
         {% for article in queryset %}
-        <div class="search_result_article">
-            <div class="search_result_image">
+        <div class="articles_preview_one">
+            <div class="articles_preview_image">
                 <span></span>
                 <img src="{{ article.article_image.url }}">
             </div>
-            <div class="search_result_details">
+            <div class="articles_preview_details">
                 <strong>
                     <a href="{% url 'eduardoApp:detail' article.slug %}">{{ article.article_name }}</a>
                 </strong>
-                <div class="search_result_price">
+                <div class="articles_preview_price">
                     <strong> CHF {{ article.price |floatformat:"2" }}.-</strong>
                 </div>
                 

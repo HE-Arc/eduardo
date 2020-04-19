@@ -19,62 +19,30 @@
 
 
 
+<h2>Dernières offres</h2>
 
-
-<h2>Liste des articles</h2>
-    <main>   
-        {% if article_list %}  
-            <div class="container my-5">
-                
-                <!-- Section: Block Content -->
-                <section>
-                            
-                <!-- Grid row -->
-                <div class="row">
-                    {% for article in article_list %}
+<div class="articles_preview">
+    {% for article in article_list %}
                         {% if article.available %}
-                            <!-- Grid column -->
-                            <div class="col-lg-4 col-md-12 mb-4">
-                    
-                            <!-- Card -->
-                            <div class="card card-ecommerce">
-                                <div class="view overlay">
-                                    <span></span>
-                                    <a href="{{ article.get_absolute_url }}">
-                                        <img src="{{ article.article_image.url }}" class="img-fluid"
-                                        alt="Sample image">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                <h5 class="card-title mb-1"><strong><a href="{{ article.get_absolute_url }}" class="dark-grey-text">{{ article.article_name }}</a></strong></h5>
-                                </ul>
-                                <div class="card-footer pb-0">
-                                    <div class="row mb-0">
-                                    <span class="float-left"><strong>{{ article.price }} CHF</strong></span>
-                                    
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            <!-- Card -->
-                    
-                            </div>
-                            <!-- Grid column -->
-                        {% endif %}
-                    {% endfor %}
-                    
-            
-                </div>
-                <!-- Grid row -->
-            
-                </section>
-                <!-- Section: Block Content -->
-            
+    <div class="articles_preview_one">
+        <div class="articles_preview_image">
+            <span></span>
+            <img src="{{ article.article_image.url }}">
+        </div>
+        <div class="articles_preview_details">
+            <strong>
+                <a href="{% url 'eduardoApp:detail' article.slug %}">{{ article.article_name }}</a>
+            </strong>
+            <div class="articles_preview_price">
+                <strong> CHF {{ article.price |floatformat:"2" }}.-</strong>
             </div>
-        {% else %}
-          <p>No articles...</p>
-       {% endif %}
-    </main>
+            
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+    
 
 </div>
 </main>
