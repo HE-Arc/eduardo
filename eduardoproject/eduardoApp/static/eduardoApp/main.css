@@ -77,6 +77,8 @@ footer
 }
 
 
+
+
 .index_page
 {
     position: relative;
@@ -106,4 +108,34 @@ footer
     font-size: 0.9em;
     height: 2em;
     overflow-wrap: break-word;
+}
+
+
+
+@media (max-width:1200px)
+{
+  .articles_preview 
+  {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .index_categorys
+{
+    grid-template-columns: repeat(3,1fr);
+}
+
+  
+}
+
+@media (max-width:800px)
+{
+  .articles_preview 
+  {
+    grid-template-columns: repeat(1,1fr);
+  }
+
+  .index_categorys
+  {
+      grid-template-columns: repeat(2,1fr);
+  }
 }
