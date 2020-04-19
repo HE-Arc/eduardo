@@ -79,7 +79,7 @@ footer
 
 
 
-.index_page
+.page
 {
     position: relative;
     z-index: 1;
@@ -105,7 +105,8 @@ footer
     margin: 0.26666666666666667em;
     text-align: center;
     line-height: 1.5;
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: bold;
     height: 2em;
     overflow-wrap: break-word;
 }
@@ -120,6 +121,57 @@ footer
 .nav-search-btn
 {
   padding: 9px 15px 9px 15px;
+}
+
+.cart_articles_preview_image
+{
+  width: 100px;
+  height: 100px;
+  white-space: nowrap;
+  text-align: center; 
+  margin-right: 4px;
+  margin-bottom: 0px;
+}
+
+.cart_page
+{
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 90em;
+    overflow: scroll;
+    margin: 0 auto  6.25em;
+    margin-top: 3.5em;
+    padding: 2.8125em;
+    box-shadow: 0 0 1.25em 0 rgba(0, 0, 0, 0.2), 0 0.3125em 0.3125em 0 rgba(0, 0, 0, 0.24);
+}
+
+.cart_articles_preview_image span 
+{
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.cart_articles_preview_image img 
+{
+  vertical-align: middle;
+  max-height: 90%;
+  max-width: 90%;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+.btn-primary
+{
+  float: left;
+  
+}
+.btn-warning
+{
+  float: right;
 }
 
 
@@ -143,6 +195,15 @@ footer
   .articles_preview 
   {
     grid-template-columns: repeat(1,1fr);
+  }
+  .btn-primary
+  {
+  font-size: 0.9rem;
+
+  }
+  .btn-warning
+  {
+  font-size: 0.9rem;
   }
 
   .index_categorys

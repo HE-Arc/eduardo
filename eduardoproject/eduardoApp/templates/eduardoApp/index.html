@@ -6,7 +6,8 @@
 
 {% block content %}
 <main role="main" class="container">
-<div class="index_page">
+<div class="page">
+    <h2>Toutes les catégories</h2>
             <div class="index_categorys">
                 {% for category in category_list %}
                     <div class=" card index_category">
@@ -14,6 +15,8 @@
                     </div>
                 {% endfor %}
             </div>
+            <hr/>
+
             <h2>Dernières offres</h2>
             <div class="articles_preview">
                 {% for article in article_list %}
@@ -21,11 +24,12 @@
                         <div class="articles_preview_one">
                             <div class="articles_preview_image">
                                 <span></span>
-                                <img src="{{ article.article_image.url }}">
+                                <a href="{{ article.get_absolute_url }}">
+                                <img src="{{ article.article_image.url }}"></a>
                             </div>
                             <div class="articles_preview_details">
                                 <strong>
-                                    <a href="{% url 'eduardoApp:detail' article.slug %}">{{ article.article_name }}</a>
+                                    <a href="{{ article.get_absolute_url }}">{{ article.article_name }}</a>
                                 </strong>
                                 <div class="articles_preview_price">
                                     <strong> CHF {{ article.price |floatformat:"2" }}.-</strong>

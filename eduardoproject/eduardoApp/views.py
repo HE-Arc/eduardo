@@ -24,7 +24,7 @@ class IndexView(generic.ListView):
     context_object_name = 'article_list'
 
     def get_queryset(self):
-        return Article.objects.order_by('article_name')
+        return Article.objects.order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -38,7 +38,8 @@ class ArticleByCategoryView(generic.ListView):
 
     def get_queryset(self, *args, **kwargs):
         cat = Category.objects.filter(slug=self.kwargs['slug'])[0]
-        return Article.objects.filter(category=cat.id)
+        return Article.objects.filter(category=cat.id, available=True)
+     
         
     def get_context_data(self, **kwargs):
         context = super(ArticleByCategoryView, self).get_context_data(**kwargs)
