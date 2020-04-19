@@ -61,6 +61,7 @@ class Article(models.Model):
             'slug':self.slug
         })
 
+
 class OrderArticle(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)

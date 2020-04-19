@@ -174,7 +174,7 @@ def remove_from_cart(request, slug):
             )[0]
             order.articles.remove(order_article)   
             messages.info(request, "Article supprimé du panier")  
-            return redirect("eduardoApp:detail", slug=slug)   
+            return redirect("eduardoApp:cart")   
         else:
             messages.info(request, "Article non présent dans le panier")
             return redirect("eduardoApp:detail", slug=slug)
@@ -182,8 +182,6 @@ def remove_from_cart(request, slug):
     else:
         messages.info(request, "Panier vide")
         return redirect("eduardoApp:detail", slug=slug)
-
-
 
 
 def is_valid_queryparam(param):

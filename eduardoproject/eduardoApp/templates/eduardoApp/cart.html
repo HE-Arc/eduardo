@@ -64,7 +64,7 @@
                         title="Remove item">X
                       </button>
                       {% endcomment %}
-                      <a href="{{ article.get_remove_from_cart_url }}" id="button" class="btn btn-sm btn-primary">X</a>
+                      <a href="{% url 'eduardoApp:remove-from-cart' order_article.article.slug %}" id="button" class="btn btn-sm btn-primary">X</a>
                     </td>
                   </tr>
                   <!-- /. rows -->
