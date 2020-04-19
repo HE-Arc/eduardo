@@ -84,11 +84,29 @@ nav{
   font-weight: bold;
 }
 .profile_achats{
-  border-style: dashed;
   clear:both;
-display:inline-block;
 margin-left: 5em;
+padding-left : 2em;
+padding-right : 2em;
+
+  margin-bottom: 1em;
 }
+
+.profile_achats div{
+  display:inline-block;
+  width:16em;
+}
+
+.p_profile{
+  display:inline-block;
+  margin-left: 2.5em;
+  font-size: 2em;
+
+}
+.h2_profile{
+  margin-bottom: 1em;
+}
+
 
 
 

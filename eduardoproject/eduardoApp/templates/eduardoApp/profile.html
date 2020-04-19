@@ -4,17 +4,25 @@
 
 {% block content%}
 
-<h2>{{user.get_username}},
+<h2 class="h2_profile">{{user.get_username}},
 
 {% if order_list %} 
 voici vos différents achats chez nous</h2>
+<p class="p_profile">Nom de l'article</p>
+<p class="p_profile">Acheté le:</p>
 
     {% for order in order_list %}
 <div class="profile_achats">
-        <p> {{ order.user }}  </p>
-        <p> {{ order.articles.all}}  </p>
-        <pl> {{ order.ordered }}  </p>
-        <p> {{ order.ordered_date }}  </p>
+
+        {% for article in order.articles.all %}
+        <div>
+            <p> {{ article }}  </p>
+            {% endfor %}
+        </div>
+        <div>
+            <p> {{ order.ordered_date }}  </p>
+        </div>
+
 </div>
     {% endfor %}
     <div>
