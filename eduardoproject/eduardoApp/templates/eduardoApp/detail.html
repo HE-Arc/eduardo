@@ -11,23 +11,20 @@
             <span></span>
             <img src="{{ article.article_image.url }}">
         </div>
-        
-        
         <div class="article_details">
             <h1>{{ article.article_name }}</h1>
             <p>Publié par {{ article.seller }}</p> 
             <h2 class="price"> CHF {{ article.price |floatformat:"2" }}.-</h2>
             {% ifequal article.seller user%}
-            <p class="not_buyable">Vous ne pouvez pas acheter une offre que vous avez publiée</p>
+                <p class="not_buyable">Vous ne pouvez pas acheter une offre que vous avez publiée</p>
             {% else %}
             {% if article.available %}
-            <a href="{{ article.get_add_to_cart_url }}" id="button" class="btn btn-primary">Ajouter au panier</a>
+                <a href="{{ article.get_add_to_cart_url }}" id="button" class="btn btn-primary">Ajouter au panier</a>
             {% else %}
-            <p class="not_buyable">Desolé, cet article a déja été vendu !</p>
+                <p class="not_buyable">Desolé, cet article a déja été vendu !</p>
             {% endif %}
             {% endifequal %}
 
-            
             <h2> Détails </h2>
             <ul>
                 <li>Etat : {{ article.state }}</li>
@@ -36,14 +33,7 @@
             </ul>
             <h2>Description</h2>
             <p class="description">{{article.detail_text}}</p>
-
-
-            
         </div>
     </div>
 </div>
-
-
-
-
 {% endblock %}

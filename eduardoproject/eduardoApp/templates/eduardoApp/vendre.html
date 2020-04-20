@@ -3,12 +3,11 @@
 
 {% block content %}
 <div class="form_article">
-<h2>Publier un article pour la vente</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token%}
-    {{ form|crispy }}
-    <button type="submit" class="btn-btn-primary">Publier</button>
-</form>
+    <h2>Publier un article pour la vente</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token%}
+        {{ form|crispy }}
+        <button type="submit" class="btn-btn-primary">Publier</button>
+    </form>
 </div>
-
 {% endblock %}

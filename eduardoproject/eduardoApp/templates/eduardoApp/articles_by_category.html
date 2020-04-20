@@ -1,13 +1,10 @@
 {% extends 'partials/header_footer.html' %}
 {% load static %}
-<head>
-   
+<head>  
 </head>
-
 {% block content%}
 <main role="main" class="container">
     <div class="page">
-        
         <h2>
             {% if article_list.count == 0 %}
                 Aucune offre 
@@ -37,8 +34,5 @@
                         </div>
                 {% endfor %}
             </div>
-
     </main>
-
-
 {% endblock %}

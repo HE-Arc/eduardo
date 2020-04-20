@@ -1,7 +1,6 @@
 ﻿{% load static %}
 
 <head>
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel ="stylesheet" type="text/css" href="{% static 'register/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -12,59 +11,46 @@
     <link rel="stylesheet" type="text/css" href="{% static 'eduardoApp/search.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'eduardoApp/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'eduardoApp/article.css' %}">
-
-    
 </head>
 <nav class="navbar navbar-expand-lg navbar-light  bg-light"> 
-    <a class="navbar-brand" href="{% url 'eduardoApp:index' %}" data-abc="true">Eduardo</a> 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-    <div class="collapse navbar-collapse" id="navbarColor02">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item"> <a class="nav-link"  href="{% url 'eduardoApp:vendre' %}" data-abc="true">Vendre</a> </li>
-
-          
-          <form class="form-inline my-2 my-lg-0" action="{% url 'eduardoApp:search' %}"> 
-            <input class="form-control nav-search-bar mr-sm-1" type="text" placeholder="Que recherchez-vous ?"> 
-            <button class="btn btn-outline-success nav-search-btn my-2 my-sm-0"  type="submit" ><i class="fa fa-search"></i></button>
-        </form>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'eduardoApp:search' %}" style="color:green;"> Recherche avancée</a>
+  <a class="navbar-brand" href="{% url 'eduardoApp:index' %}" data-abc="true">Eduardo</a> 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"> <a class="nav-link"  href="{% url 'eduardoApp:vendre' %}" data-abc="true">Vendre</a> </li>
+      <form class="form-inline my-2 my-lg-0" action="{% url 'eduardoApp:search' %}"> 
+          <input class="form-control nav-search-bar mr-sm-1" type="text" placeholder="Que recherchez-vous ?"> 
+          <button class="btn btn-outline-success nav-search-btn my-2 my-sm-0"  type="submit" ><i class="fa fa-search"></i></button>
+      </form>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'eduardoApp:search' %}" style="color:green;"> Recherche avancée</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-right">
+      {% if user.is_authenticated %}
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'eduardoApp:profile' %}">Mon compte</a>
         </li>
-        </ul>
-
-
-
-        
-        <ul class="navbar-nav mr-right">
-            {% if user.is_authenticated %}
-                <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'eduardoApp:profile' %}">Mon compte</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'eduardoApp:cart' %}">Mon panier</a>
-                </li>
-
-                <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'logout' %}">Se déconnecter</a>
-                </li>
-            {% else %}
-                <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'login' %}">S'identifier</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'eduardoApp:cart' %}">Mon panier</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'logout' %}">Se déconnecter</a>
+        </li>
+      {% else %}
+        <li class="nav-item ">
+            <a class="nav-link" href="{% url 'login' %}">S'identifier</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
 </nav>
-
-  
-
 {% if messages %}
-    {% for message in messages %}
+  {% for message in messages %}
     <div class="alert alert-{{ message.tags }}" role="alert">
-         {{ message }}   
-      </div>
-    {% endfor %}
+      {{ message }}   
+    </div>
+  {% endfor %}
 {% endif %}
 
 {% block content%}{% endblock %}
@@ -73,10 +59,8 @@
     <div class="container text-center">
       <p>© 2020 Copyright: Eduardo, réalisé à la </p>
       <a href="https://www.he-arc.ch/"> HE-Arc Ingénierie</a>
-
     </div>
   </footer>
-
   <script>
     function myFunction() {
       var x = document.getElementById("myTopnav");
