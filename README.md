@@ -27,4 +27,4 @@ Modifications d'un model:
 [Tuto Django - ResistanceApp](https://github.com/HE-Arc/demo-django-resistance-app)
 
 ## Capistrano 
-[Cours Capistrano](https://slides.com/osaris/deploiement-applis-web-2020?token=Ca2YfhZy#/4)
+[Cours Capistrano](https://slides.com/osaris/deploiement-applis-web-2020?token=Ca2YfhZy#/)
