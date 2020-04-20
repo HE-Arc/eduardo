@@ -23,12 +23,13 @@
 .article_image
 {
   width: 65%;
-  border: 1px solid blue;
   white-space: nowrap;
-  background-color: lightskyblue;
+  background-color: whitesmoke;
   text-align: center; 
   margin-left: 4px;
   margin-right: 4px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);    
 }
 
 .article_image span 
@@ -59,6 +60,8 @@
   background-color: whitesmoke;
   overflow: scroll;
   overflow-wrap: break-word;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); 
 }
 .article_details .price
 {

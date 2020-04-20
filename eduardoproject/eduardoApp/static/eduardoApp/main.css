@@ -32,15 +32,15 @@ footer
     margin-left: auto;
     margin-right: auto;
     overflow-wrap: break-word;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .articles_preview_image
 {
   width: 280px;
   height: 280px;
-  border: 1px solid blue;
   white-space: nowrap;
-  background-color: lightskyblue;
+  background-color: #f1f1f1;
   text-align: center; 
   margin-right: 4px;
   margin-bottom: 0px;
