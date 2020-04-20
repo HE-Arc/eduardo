@@ -13,9 +13,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, ArticleForm
-
 from .models import Article, Category, Order, OrderArticle, State, Color
-
 
 # Create your views here.
 
@@ -31,7 +29,6 @@ class IndexView(generic.ListView):
         context['category_list'] = Category.objects.all()
         return context
 
-
 class ArticleByCategoryView(generic.ListView):
     template_name = 'eduardoApp/articles_by_category.html'
     context_object_name = 'article_list'
@@ -46,7 +43,6 @@ class ArticleByCategoryView(generic.ListView):
         context['category'] = Category.objects.filter(slug=self.kwargs['slug'])[0]
         return context
         
-
 class DetailView(generic.DetailView):
     model = Article
     template_name = 'eduardoApp/detail.html'
@@ -69,7 +65,6 @@ class ProfileView(generic.ListView):
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user.id,ordered=True)
-
 
 def validate_order(request):
     try:
@@ -130,8 +125,6 @@ def logout_view(response):
     logout(response)
     return redirect("/eduardo")
 
-
-
 def get_categories(request):
     category_list=Category.objects.all()
     context = {'category_list':category_list}
@@ -185,7 +178,6 @@ def remove_from_cart(request, slug):
         messages.info(request, "Panier vide")
         return redirect("eduardoApp:detail", slug=slug)
 
-
 def is_valid_queryparam(param):
     return param != '' and param is not None
 
@@ -212,21 +204,16 @@ def filter(request):
     qs = qs.filter(available=True)
     return qs
 
-
 def search(request):
     qs =filter(request)
     paginator = Paginator(qs, 3)
-
     page = request.GET.get('page')
-
     qs = paginator.get_page(page)
-
     title = request.GET.get('title_contains')
     category = request.GET.get('category')
     priceMin = request.GET.get('priceMin')
     priceMax = request.GET.get('priceMax')
 
-   
     context= {
         'categories': Category.objects.all(),
         'queryset':qs,
@@ -234,7 +221,5 @@ def search(request):
         'category': category,
         'priceMin': priceMin,
         'priceMax': priceMax,
-        
-        }
-
+    }
     return render(request, "eduardoApp/search.html",context)

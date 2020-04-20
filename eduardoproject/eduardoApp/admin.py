@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from .models import Article, Category, OrderArticle, Order, State, Color
 
-
 # Register your models here.
 
 admin.site.register(Category)

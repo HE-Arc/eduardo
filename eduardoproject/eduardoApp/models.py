@@ -5,7 +5,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
-# -------------- Articles ---------------
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(null=False, blank=False)
@@ -29,7 +28,6 @@ class Color(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class Article(models.Model):
     article_name = models.CharField(unique=True, max_length=30)
@@ -61,7 +59,6 @@ class Article(models.Model):
             'slug':self.slug
         })
 
-
 class OrderArticle(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
@@ -75,7 +72,6 @@ class OrderArticle(models.Model):
 
     def get_total_price(self):
         return self.get_article_total_price()
-
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
