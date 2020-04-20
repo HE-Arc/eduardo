@@ -97,8 +97,6 @@ class VendreView(LoginRequiredMixin,generic.View):
             obj.seller = request.user
             obj.save()
             return redirect("/eduardo")
-        else:
-            form = ArticleForm()
         return render(request, "eduardoApp/vendre.html", {
             "form":form
         })
