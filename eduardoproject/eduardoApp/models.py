@@ -37,7 +37,7 @@ class Article(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
     color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True)
     detail_text = models.TextField(max_length=600, null=True)
-    article_image = models.ImageField(upload_to="images/",null=True, blank=True)
+    article_image = models.ImageField(upload_to="images/",default="images/notIMG.png", null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(null=False, blank=False)
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)

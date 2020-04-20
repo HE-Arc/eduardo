@@ -40,7 +40,7 @@
         <ul class="navbar-nav mr-right">
             {% if user.is_authenticated %}
                 <li class="nav-item ">
-                    <a class="nav-link" href="{% url 'eduardoApp:profile' %}">{{user.get_username}}</a>
+                    <a class="nav-link" href="{% url 'eduardoApp:profile' %}">Mon compte</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{% url 'eduardoApp:cart' %}">Mon panier</a>

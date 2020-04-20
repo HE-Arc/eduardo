@@ -67,6 +67,13 @@
   font-size: 24px;
 }
 
+.article_details .not_buyable
+{
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .article_details h1::before
 {
     float: right;

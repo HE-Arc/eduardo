@@ -3,35 +3,93 @@
 {% load static %}
 
 {% block content%}
+<main role="main" class="container">
+    <div class="cart_page">
+        <table class="table product-table mb-0">
 
-<h2 class="h2_profile">{{user.get_username}},
+<h2 class="h2_profile">Bienvenue {{user.first_name}} {{user.first_name}} !
 
 {% if order_list %} 
-voici vos différents achats chez nous</h2>
-<p class="p_profile">Nom de l'article</p>
-<p class="p_profile">Acheté le:</p>
+<h3>Voici vos achats</h3>
 
+
+<!-- Table head -->
+<thead class="mdb-color lighten-5">
+    <tr>
+      <th></th>
+      <th class="font-weight-bold">
+        <strong>Article</strong>
+      </th>
+      <th class="font-weight-bold">
+        <strong>Date de l'achat</strong>
+      </th>
+      <th></th>
+      <th class="font-weight-bold">
+        <strong>Prix</strong>
+      </th>
+
+     
+      <th></th>
+    </tr>
+  </thead>
+
+  <!-- /.Table head -->
+
+  <!-- Table body -->
+  <tbody>
     {% for order in order_list %}
-<div class="profile_achats">
-
-        {% for article in order.articles.all %}
-        <div>
-            <p> {{ article }}  </p>
-            {% endfor %}
+    <!-- rows -->
+    {% for article in order.articles.all %}
+    <tr>
+        <th>
+          <div class="cart_articles_preview_image">
+            <span></span>
+            <a href="{{ article.article.get_absolute_url }}">
+            <img src="{{  article.article.article_image.url }}"></a>
         </div>
-        <div>
-            <p> {{ order.ordered_date }}  </p>
-        </div>
+         
+        </th>
+        <td class="polol">
+          <h5>
+            <strong><a href="{{ article.article.get_absolute_url }}">{{ article.article.article_name }}</a></strong>
+          </h5>
+        </td>
+        <td>{{ order.ordered_date }}</td>
+        <td></td>
+        <td>{{ article.article.price |floatformat:"2" }} CHF</td>
+        
+        <td>
+         
+       </td>
+      </tr>
+      <!-- /. rows -->
+      {% endfor %}
+      {% endfor %}
+     
 
-</div>
-    {% endfor %}
+
+
+
+</tbody>
+
+  
+   
+<!-- /.Table body -->
+
+</table>
+
+<hr>
+
+
+
     <div>
-        <h3>Merci de votre confiance.</h3>
+        <p>Merci de votre confiance.</p>
     </div>
 {% else %}
-vous n'avez effectué aucun achat chez nous encore!</h2>
-{% endif %}
+<h3>Aucun achat effectué !</h3>
 
+{% endif %}
+</div>
 
 
 {% endblock %}
