@@ -1,0 +1,22 @@
+{% extends 'partials/header_footer.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="form_article">
+    <h2>Publier un article pour la vente</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token%}
+        {{ form|crispy }}
+        <button type="submit" class="btn-btn-primary">Publier</button>
+    </form>
+</div>
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% endblock %}

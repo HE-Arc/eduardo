@@ -14,3 +14,6 @@ Commande : `python manage.py migrate`
 
 ## Tuto entier
 [Tuto Django - ResistanceApp](https://github.com/HE-Arc/demo-django-resistance-app)
+
+## Configuration mySQL
+[Tuto config db avec MySql](https://www.digitalocean.com/community/tutorials/how-to-create-a-django-app-and-connect-it-to-a-database)

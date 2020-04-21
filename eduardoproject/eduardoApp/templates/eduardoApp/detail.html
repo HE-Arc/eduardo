@@ -1,0 +1,39 @@
+{% extends 'partials/header_footer.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'static/eduardoApp/style.css' %}">
+
+{% block content%}
+
+<div class="article_page">
+    <div class="article">
+        <div class="article_image">
+            <span></span>
+            <img src="{{ article.article_image.url }}">
+        </div>
+        <div class="article_details">
+            <h1>{{ article.article_name }}</h1>
+            <p>Publié par {{ article.seller }}</p> 
+            <h2 class="price"> CHF {{ article.price |floatformat:"2" }}.-</h2>
+            {% ifequal article.seller user%}
+                <p class="not_buyable">Vous ne pouvez pas acheter une offre que vous avez publiée</p>
+            {% else %}
+            {% if article.available %}
+                <a href="{{ article.get_add_to_cart_url }}" id="button" class="btn btn-primary">Ajouter au panier</a>
+            {% else %}
+                <p class="not_buyable">Desolé, cet article a déja été vendu !</p>
+            {% endif %}
+            {% endifequal %}
+
+            <h2> Détails </h2>
+            <ul>
+                <li>Etat : {{ article.state }}</li>
+                <li>Couleur : {{ article.color }}</li>
+                <li>Catégorie : {{ article.category }}</li>
+            </ul>
+            <h2>Description</h2>
+            <p class="description">{{article.detail_text}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

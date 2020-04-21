@@ -1,0 +1,64 @@
+﻿{% extends 'partials/header_footer.html' %}
+{% load static %}
+<head>
+</head>
+{% block content %}
+<main role="main" class="container">
+<div class="page">
+    <h2>Toutes les catégories</h2>
+            <div class="index_categorys">
+                {% for category in category_list %}
+                    <div class=" card index_category">
+                        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+            <hr/>
+
+            <h2>Dernières offres</h2>
+            <div class="articles_preview">
+                {% for article in article_list %}
+                    {% if article.available %}
+                        <div class="articles_preview_one">
+                            <div class="articles_preview_image">
+                                <span></span>
+                                <a href="{{ article.get_absolute_url }}">
+                                <img src="{{ article.article_image.url }}"></a>
+                            </div>
+                            <div class="articles_preview_details">
+                                <strong>
+                                    <a href="{{ article.get_absolute_url }}">{{ article.article_name }}</a>
+                                </strong>
+                                <div class="articles_preview_price">
+                                    <strong> CHF {{ article.price |floatformat:"2" }}.-</strong>
+                                </div>                           
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a class="pagination-item" href="?page=1">&laquo; first</a>
+                        <a class="pagination-item" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    
+                    <span class="current pagination-number">
+                        {{ page_obj.number }}
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a class="pagination-item" href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a class="pagination-item" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      
+{% endblock %}

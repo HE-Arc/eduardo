@@ -1,0 +1,71 @@
+{% extends 'partials/header_footer.html' %}
+
+{% load static %}
+
+{% block content%}
+<main role="main" class="container">
+<div class="cart_page">
+  <table class="table product-table mb-0">
+    <h2>Votre panier</h2>
+
+    <!-- Table head -->
+    <thead class="mdb-color lighten-5">
+      <tr>
+        <th></th>
+        <th class="font-weight-bold">
+          <strong>Article</strong>
+        </th>
+        <th class="font-weight-bold">
+          <strong>Couleur</strong>
+        </th>
+        <th></th>
+        <th class="font-weight-bold">
+          <strong>Prix</strong>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <!-- /.Table head -->
+
+    <!-- Table body -->
+    <tbody>
+      {% for order_article in object.articles.all %}
+          <!-- rows -->
+          <tr>
+          <th>
+            <div class="cart_articles_preview_image">
+              <span></span>
+              <a href="{{ order_article.article.get_absolute_url }}">
+              <img src="{{  order_article.article.article_image.url }}"></a>
+          </div>
+          </th>
+          <td class="polol">
+            <h5>
+              <strong><a href="{{ order_article.article.get_absolute_url }}">{{ order_article.article.article_name }}</a></strong>
+            </h5>
+          </td>
+          <td>{{ order_article.article.color }}</td>
+          <td></td>
+          <td>{{ order_article.article.price |floatformat:"2" }} CHF</td>
+          <td>
+            <a href="{% url 'eduardoApp:remove-from-cart' order_article.article.slug %}" id="button" class="btn btn-sm btn-danger">X</a>
+          </td>
+        </tr>
+        <!-- /. rows -->
+      {% endfor %}
+
+      <!-- buttons -->
+      <tr>
+        <td  class="font-weight-bold" colspan="4">Total</td>
+        <td class="font-weight-bold" >{{ object.get_total |floatformat:"2"  }} CHF</td>
+        <td></td>
+      </tr>
+      <!-- /. buttons -->
+    </tbody>
+    <!-- /.Table body -->
+  </table>
+  <hr>
+  <a href="{% url 'eduardoApp:index' %}" id=button class="btn btn-primary">Continuer les achats</a>
+  <a href="{% url 'eduardoApp:validate-order' %}" id=button class="btn btn-warning">Valider les achats</a>
+</div>
+{% endblock %}

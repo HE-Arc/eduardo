@@ -1,0 +1,69 @@
+{% extends 'partials/header_footer.html' %}
+
+{% load static %}
+
+{% block content%}
+<main role="main" class="container">
+  <div class="cart_page">
+    <table class="table product-table mb-0">
+      <h2 class="h2_profile">Bienvenue {{user.first_name}} {{user.first_name}} !
+      {% if order_list %} 
+        <h3>Historique des achats</h3>
+        <!-- Table head -->
+        <thead class="mdb-color lighten-5">
+            <tr>
+              <th></th>
+              <th class="font-weight-bold">
+                <strong>Article</strong>
+              </th>
+              <th class="font-weight-bold">
+                <strong>Date de l'achat</strong>
+              </th>
+              <th></th>
+              <th class="font-weight-bold">
+                <strong>Prix</strong>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <!-- /.Table head -->
+
+          <!-- Table body -->
+          <tbody>
+            {% for order in order_list %}
+              <!-- rows -->
+              {% for article in order.articles.all %}
+                <tr>
+                  <th>
+                    <div class="cart_articles_preview_image">
+                      <span></span>
+                      <a href="{{ article.article.get_absolute_url }}">
+                      <img src="{{  article.article.article_image.url }}"></a>
+                    </div>
+                  </th>
+                  <td class="polol">
+                    <h5>
+                      <strong><a href="{{ article.article.get_absolute_url }}">{{ article.article.article_name }}</a></strong>
+                    </h5>
+                  </td>
+                  <td>{{ order.ordered_date }}</td>
+                  <td></td>
+                  <td>{{ article.article.price |floatformat:"2" }} CHF</td>
+                  <td></td>
+                </tr>
+                  <!-- /. rows -->
+              {% endfor %}
+            {% endfor %}
+          </tbody>
+        <!-- /.Table body -->
+      </table>
+        <hr>
+        <div>
+            <p>Merci de votre confiance.</p>
+        </div>
+    {% else %}
+      <h3>Aucun achat effectué !</h3>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

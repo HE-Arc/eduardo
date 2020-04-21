@@ -31,12 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'eduardoApp.apps.EduardoappConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +57,7 @@ ROOT_URLCONF = 'eduardoproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'eduardoApp/partials/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,10 +77,17 @@ WSGI_APPLICATION = 'eduardoproject.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'eduardodb',
+    'USER': os.environ.get('GROUPNAME', 'root'),
+    'PASSWORD': os.environ.get('PASSWORD', 'admin'),
+    'HOST': os.environ.get('MYSQL_HOST', '127.0.0.1'),
+    'PORT': os.environ.get('MYSQL_PORT', '3306'),
+    'OPTIONS': {
+      'charset': 'utf8mb4'
     }
+  }
 }
 
 
@@ -118,3 +128,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK="bootstrap4"
+
+LOGIN_REDIRECT_URL="/eduardo"
+
+LOGOUT_REDIRECT_URL="/eduardo"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

@@ -1,0 +1,38 @@
+{% extends 'partials/header_footer.html' %}
+{% load static %}
+<head>  
+</head>
+{% block content%}
+<main role="main" class="container">
+    <div class="page">
+        <h2>
+            {% if article_list.count == 0 %}
+                Aucune offre 
+            {% elif article_list.count == 1 %}
+                1 offre 
+            {% else %}
+                {{ article_list.count }} offres 
+            {% endif %}
+            dans <strong>{{ category }}</strong>
+           </h2>
+        <div class="articles_preview">
+            {% for article in article_list %}
+                        <div class="articles_preview_one">
+                            <div class="articles_preview_image">
+                                <span></span>
+                                <a href="{{ article.get_absolute_url }}">
+                                <img src="{{ article.article_image.url }}"></a>
+                            </div>
+                            <div class="articles_preview_details">
+                                <strong>
+                                    <a href="{{ article.get_absolute_url }}">{{ article.article_name }}</a>
+                                </strong>
+                                <div class="articles_preview_price">
+                                    <strong> CHF {{ article.price |floatformat:"2" }}.-</strong>
+                                </div>                           
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
+    </main>
+{% endblock %}
