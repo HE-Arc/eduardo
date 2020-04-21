@@ -19,9 +19,10 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"> <a class="nav-link"  href="{% url 'eduardoApp:vendre' %}" data-abc="true">Vendre</a> </li>
       <form class="form-inline my-2 my-lg-0" action="{% url 'eduardoApp:search' %}"> 
-          <input class="form-control nav-search-bar mr-sm-1" type="text" placeholder="Que recherchez-vous ?"> 
+          <input class="form-control nav-search-bar mr-sm-1" type="text" name="title_contains" placeholder="Que recherchez-vous ?"> 
           <button class="btn btn-outline-success nav-search-btn my-2 my-sm-0"  type="submit" ><i class="fa fa-search"></i></button>
       </form>
+ 
       <li class="nav-item">
           <a class="nav-link" href="{% url 'eduardoApp:search' %}" style="color:green;"> Recherche avancée</a>
       </li>
