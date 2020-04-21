@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'eduardoproject.wsgi.application'
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'eduardodb',
-    'USER': os.environ.get('GROUPNAME', 'root'),
-    'PASSWORD': os.environ.get('PASSWORD', 'admin'),
-    'HOST': os.environ.get('MYSQL_HOST', '127.0.0.1'),
-    'PORT': os.environ.get('MYSQL_PORT', '3306'),
+    'NAME': os.environ['DATABASE_NAME'],
+    'USER': os.environ['DATABASE_USER'],
+    'PASSWORD': os.environ['DATABASE_PASSWORD'], 'PORT': os.environ.get('MYSQL_PORT', '3306'),
+    'HOST': '127.0.0.1',
+    'PORT': '3306',
     'OPTIONS': {
       'charset': 'utf8mb4'
     }
