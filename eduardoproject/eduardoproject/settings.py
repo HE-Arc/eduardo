@@ -25,7 +25,8 @@ SECRET_KEY = ')rwbqe-lv!+a*=mj78lop7^#3u!&7w%h3@44*c(_yghw6kt&&@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['localhost','eduardo.srvz-webapp.he-arc.ch']
 
 
 # Application definition
@@ -131,9 +132,9 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
 
-LOGIN_REDIRECT_URL="/eduardo"
+LOGIN_REDIRECT_URL="/"
 
-LOGOUT_REDIRECT_URL="/eduardo"
+LOGOUT_REDIRECT_URL="/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

@@ -84,7 +84,7 @@ def validate_order(request):
         return redirect("eduardoApp:index")
     except ObjectDoesNotExist:
         messages.error(request, "Impossible de valider les achats")
-        return redirect("eduardo/")
+        return redirect("/")
         
 class VendreView(LoginRequiredMixin,generic.View):
     login_url = '/login/'
@@ -96,7 +96,7 @@ class VendreView(LoginRequiredMixin,generic.View):
             obj.slug = slugify(new_slug)
             obj.seller = request.user
             obj.save()
-            return redirect("/eduardo")
+            return redirect("eduardoApp:index")
         return render(request, "eduardoApp/vendre.html", {
             "form":form
         })
@@ -121,7 +121,7 @@ class RegisterView(generic.View):
 
 def logout_view(response):
     logout(response)
-    return redirect("/eduardo")
+    return redirect("eduardoApp:index")
 
 def get_categories(request):
     category_list=Category.objects.all()
