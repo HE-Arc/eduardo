@@ -25,7 +25,7 @@ SECRET_KEY = ')rwbqe-lv!+a*=mj78lop7^#3u!&7w%h3@44*c(_yghw6kt&&@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eduardo.srvz-webapp.he-arc.ch']
 
 
 # Application definition
