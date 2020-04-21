@@ -6,9 +6,7 @@ import sys
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eduardoproject.settings')
-    os.environ.setdefault('DATABASE_NAME', 'eduardodb')
-    os.environ.setdefault('DATABASE_USER', 'root')
-    os.environ.setdefault('DATABASE_PASSWORD', 'admin')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
